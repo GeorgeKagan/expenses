@@ -8,7 +8,7 @@ expensesApp.config(($stateProvider, $urlRouterProvider) => {
 
         .state('home', {
             url: '/home',
-            // templateUrl: 'home.html'
+            templateUrl: 'home.html'
         });
 
 });

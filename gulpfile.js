@@ -17,9 +17,17 @@ elixir(mix => {
     mix.sass('app.scss')
        .scripts('app.js');
 
+    // Vendor CSS
+    mix.styles([
+        './node_modules/semantic-ui/dist/semantic.min.css'
+    ], 'public/css/vendor.css');
+
+    // Vendor JS
     mix.scripts([
+        './node_modules/jquery/dist/jquery.js',
         './node_modules/angular/angular.js',
-        './node_modules/angular-ui-router/release/angular-ui-router.min.js'
+        './node_modules/angular-ui-router/release/angular-ui-router.min.js',
+        './node_modules/semantic-ui/dist/semantic.min.js'
     ], 'public/js/vendor.js');
 
     mix.task('templateCache');
@@ -28,7 +36,6 @@ elixir(mix => {
 gulp.task('templateCache', function () {
     return gulp.src('./resources/assets/tpls/**/*.html')
         .pipe(templateCache('templates.js', {
-            root: 'js/',
             module: 'expensesApp'
         }))
         .pipe(gulp.dest('public/js'));
