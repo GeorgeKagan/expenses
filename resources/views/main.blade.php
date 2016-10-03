@@ -10,6 +10,11 @@
         <script src="/js/vendor.js" type="text/javascript"></script>
         <script src="/js/app.js" type="text/javascript"></script>
         <script src="/js/templates.js" type="text/javascript"></script>
+        <script>
+            function dd(variable) {
+                console.log(variable);
+            }
+        </script>
     </head>
     <body>
         <div class="pusher" ui-view></div>

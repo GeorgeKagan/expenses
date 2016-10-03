@@ -14,8 +14,8 @@ const templateCache = require('gulp-angular-templatecache');
  */
 
 elixir(mix => {
-    mix.sass('app.scss')
-       .scripts('app.js');
+    mix.sass(['./resources/assets/sass/**/*.scss'], 'public/css/app.css')
+       .scripts(['./resources/assets/js/**/*.js'], 'public/js/app.js');
 
     // Vendor CSS
     mix.styles([
@@ -30,7 +30,9 @@ elixir(mix => {
         './node_modules/jquery/dist/jquery.js',
         './node_modules/angular/angular.js',
         './node_modules/angular-ui-router/release/angular-ui-router.min.js',
-        './node_modules/semantic-ui/dist/semantic.min.js'
+        // Semantic UI
+        './node_modules/semantic-ui/dist/semantic.min.js',
+        './node_modules/semantic-ui/dist/components/dropdown.js'
     ], 'public/js/vendor.js');
 
     mix.task('templateCache');
