@@ -1,0 +1,16 @@
+{
+  "name": "expenses",
+  "version": "1.0.0",
+  "description": "Track your personal expenses",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://timenomad@bitbucket.org/timenomad/expenses.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "homepage": "https://bitbucket.org/timenomad/expenses#readme"
+}

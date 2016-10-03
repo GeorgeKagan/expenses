@@ -1,0 +1,13 @@
+{
+    "name": "timenomad/expenses",
+    "description": "Track your personal monthly expenses",
+    "type": "project",
+    "license": "proprietary",
+    "authors": [
+        {
+            "name": "George Kagan",
+            "email": "georgekagan@gmail.com"
+        }
+    ],
+    "require": {}
+}
