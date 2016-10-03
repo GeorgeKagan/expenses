@@ -1,2 +1,14 @@
 // Variables
 @import "variables";
+
+.masthead.segment {
+  min-height: 200px;
+  padding: 1em 0;
+}
+
+.masthead .ui.huge {
+  margin-top: 3em;
+  margin-bottom: 0;
+  font-size: 4em;
+  font-weight: normal;
+}

@@ -22,6 +22,9 @@ elixir(mix => {
         './node_modules/semantic-ui/dist/semantic.min.css'
     ], 'public/css/vendor.css');
 
+    // Vendor fonts
+    mix.copy('./node_modules/semantic-ui/dist/themes/default', 'public/css/themes/default');
+
     // Vendor JS
     mix.scripts([
         './node_modules/jquery/dist/jquery.js',
@@ -33,10 +36,15 @@ elixir(mix => {
     mix.task('templateCache');
 });
 
-gulp.task('templateCache', function () {
-    return gulp.src('./resources/assets/tpls/**/*.html')
-        .pipe(templateCache('templates.js', {
-            module: 'expensesApp'
-        }))
-        .pipe(gulp.dest('public/js'));
+gulp.task('templateCache', () => {
+    let path = './resources/assets/tpls/**/*.html';
+    let cacheTemplates = () => {
+        gulp.src(path)
+            .pipe(templateCache('templates.js', {
+                module: 'expensesApp'
+            }))
+            .pipe(gulp.dest('public/js'));
+    };
+    cacheTemplates();
+    gulp.watch(path, cacheTemplates)
 });
