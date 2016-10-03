@@ -19,6 +19,7 @@ elixir(mix => {
 
     // Vendor CSS
     mix.styles([
+        // Semantic UI
         './node_modules/semantic-ui/dist/semantic.min.css'
     ], 'public/css/vendor.css');
 
@@ -31,8 +32,7 @@ elixir(mix => {
         './node_modules/angular/angular.js',
         './node_modules/angular-ui-router/release/angular-ui-router.min.js',
         // Semantic UI
-        './node_modules/semantic-ui/dist/semantic.min.js',
-        './node_modules/semantic-ui/dist/components/dropdown.js'
+        './node_modules/semantic-ui/dist/semantic.min.js'
     ], 'public/js/vendor.js');
 
     mix.task('templateCache');
