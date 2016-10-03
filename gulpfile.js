@@ -1,6 +1,6 @@
+const gulp = require('gulp');
 const elixir = require('laravel-elixir');
-
-require('laravel-elixir-vue');
+const templateCache = require('gulp-angular-templatecache');
 
 /*
  |--------------------------------------------------------------------------
@@ -15,5 +15,21 @@ require('laravel-elixir-vue');
 
 elixir(mix => {
     mix.sass('app.scss')
-       .webpack('app.js');
+       .scripts('app.js');
+
+    mix.scripts([
+        './node_modules/angular/angular.js',
+        './node_modules/angular-ui-router/release/angular-ui-router.min.js'
+    ], 'public/js/vendor.js');
+
+    mix.task('templateCache');
+});
+
+gulp.task('templateCache', function () {
+    return gulp.src('./resources/assets/tpls/**/*.html')
+        .pipe(templateCache('templates.js', {
+            root: 'js/',
+            module: 'expensesApp'
+        }))
+        .pipe(gulp.dest('public/js'));
 });
