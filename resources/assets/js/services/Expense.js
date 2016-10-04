@@ -8,7 +8,7 @@ angular.module('expensesApp').factory('Expense', () => {
      * @param data
      */
     service.addNewExpense = data => {
-
+        dd(data);
     };
 
     return service;

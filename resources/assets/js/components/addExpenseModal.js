@@ -16,23 +16,31 @@ angular.module('expensesApp').directive('addExpenseModal', () => {
                     ${TITLE}
                 </div>
                 <div class="content">
-                    <add-expense-form></add-expense-form>
+                    <add-expense-form add-expense="callAddExpense"></add-expense-form>
                 </div>
                 <div class="actions">
-                    <div class="ui positive button" ng-click="addExpense()">
+                    <div class="ui positive button">
                         <i class="checkmark icon"></i>
                         Add
                     </div>
                 </div>
             </div>`,
         scope: {},
+        controller: $scope => {
+            // Link to add-expense-form's method
+            $scope.callAddExpense = null;
+        },
         link: (scope, element, attr) => {
             let modal = element.find('#exp-add-modal');
 
             // Init modal
             modal.modal({
                 transition: 'horizontal flip',
-                blurring: false
+                blurring: false,
+                onApprove: () => {
+                    scope.callAddExpense();
+                    return false;
+                }
             });
 
             // Show the add expense modal
