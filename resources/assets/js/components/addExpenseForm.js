@@ -5,10 +5,25 @@ angular.module('expensesApp').directive('addExpenseForm', Expense => {
         restrict: 'E',
         templateUrl: 'forms/addExpenseForm.html',
         scope: {},
+        controller: $scope => {
+            $scope.form = {
+                forToday: false,
+                type: null,
+                amount: null
+            };
+            $scope.addExpense = Expense.addNewExpense;
+        },
         link: (scope, element, attr) => {
-            element.find('.ui.checkbox').checkbox('set checked');
-
-            scope.addExpense = Expense.addNewExpense;
+            element.find('.exp-for-today').checkbox().checkbox({
+                onChecked: () => {
+                    scope.form.forToday = true;
+                    scope.$digest();
+                },
+                onUnchecked: () => {
+                    scope.form.forToday = false;
+                    scope.$digest();
+                }
+            });
         }
     }
 });

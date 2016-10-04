@@ -18,6 +18,12 @@ angular.module('expensesApp').directive('addExpenseModal', () => {
                 <div class="content">
                     <add-expense-form></add-expense-form>
                 </div>
+                <div class="actions">
+                    <div class="ui positive button" ng-click="addExpense()">
+                        <i class="checkmark icon"></i>
+                        Add
+                    </div>
+                </div>
             </div>`,
         scope: {},
         link: (scope, element, attr) => {
