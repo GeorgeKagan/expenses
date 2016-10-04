@@ -1,10 +1,10 @@
-angular.module('expensesApp').directive('expenseAdder', () => {
+angular.module('expensesApp').directive('expenseAdder', Expense => {
     "use strict";
 
     return {
         restrict: 'E',
         template: `
-            <div class="ui huge primary button" ng-click="addExpense()">
+            <div class="ui huge primary button" ng-click="showModal()">
                 <i class="add circle icon"></i> Add New Expense
             </div>
 
@@ -17,15 +17,9 @@ angular.module('expensesApp').directive('expenseAdder', () => {
                     form goes here...
                 </div>
                 <div class="actions">
-                    <div class="two fluid ui inverted buttons">
-                        <div class="ui cancel red basic inverted button">
-                            <i class="remove icon"></i>
-                            Cancel
-                        </div>
-                        <div class="ui ok green basic inverted button">
-                            <i class="checkmark icon"></i>
-                            Add
-                        </div>
+                    <div class="ui positive button" ng-click="addExpense()">
+                        <i class="checkmark icon"></i>
+                        Add
                     </div>
                 </div>
             </div>`,
@@ -39,9 +33,12 @@ angular.module('expensesApp').directive('expenseAdder', () => {
             modal.modal();
 
             // Show the add expense modal
-            scope.addExpense = () => {
+            scope.showModal = () => {
                 modal.modal('show');
             };
+
+            // Save to DB
+            scope.addExpense = Expense.addNewExpense;
         }
     }
 });

@@ -4,7 +4,7 @@ angular.module('expensesApp').factory('FilterData', () => {
     let service = {};
 
     /**
-     *
+     * Get a list of supported years to filter by.
      * @returns {number[]}
      */
     service.getYears = () => {
@@ -17,7 +17,7 @@ angular.module('expensesApp').factory('FilterData', () => {
     };
 
     /**
-     *
+     * Get a list of supported months to filter by.
      * @returns {string[]}
      */
     service.getMonths = () => {
