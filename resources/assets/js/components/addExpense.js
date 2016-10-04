@@ -1,4 +1,4 @@
-angular.module('expensesApp').directive('expenseAdder', Expense => {
+angular.module('expensesApp').directive('addExpense', Expense => {
     "use strict";
 
     return {
@@ -13,7 +13,7 @@ angular.module('expensesApp').directive('expenseAdder', Expense => {
                 <div class="header">
                     Add New Expense
                 </div>
-                <div class="content">
+                <div class="content" ng-include src="'forms/addExpense.html'">
                     form goes here...
                 </div>
                 <div class="actions">
