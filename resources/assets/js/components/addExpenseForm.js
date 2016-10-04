@@ -13,6 +13,7 @@ angular.module('expensesApp').directive('addExpenseForm', Expense => {
                 type: null,
                 amount: null
             };
+            $scope.types = Expense.getTypes();
             $scope.addExpense = () => Expense.addNewExpense($scope.form);
         },
         link: (scope, element, attr) => {

@@ -1,6 +1,13 @@
 angular.module('expensesApp').factory('Expense', () => {
     "use strict";
 
+    const TYPES = [
+        'Fuel',
+        'Food',
+        'Home',
+        'Rent'
+    ];
+
     let service = {};
 
     /**
@@ -10,6 +17,11 @@ angular.module('expensesApp').factory('Expense', () => {
     service.addNewExpense = data => {
         dd(data);
     };
+
+    /**
+     * Get the supported expense types.
+     */
+    service.getTypes = () => TYPES;
 
     return service;
 });
