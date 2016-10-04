@@ -8,6 +8,12 @@ angular.module('expensesApp').factory('Expense', () => {
         'Rent'
     ];
 
+    const RECURRENCE_TYPES = [
+        {id: 'one-time', label: 'One-time'},
+        {id: 'monthly', label: 'Monthly'},
+        {id: 'payments', label: 'Payments'}
+    ];
+
     let service = {};
 
     /**
@@ -22,6 +28,11 @@ angular.module('expensesApp').factory('Expense', () => {
      * Get the supported expense types.
      */
     service.getTypes = () => TYPES;
+
+    /**
+     * Get the supported recurrence types.
+     */
+    service.getRecurrenceTypes = () => RECURRENCE_TYPES;
 
     return service;
 });

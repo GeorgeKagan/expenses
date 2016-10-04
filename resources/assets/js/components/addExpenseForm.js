@@ -14,6 +14,7 @@ angular.module('expensesApp').directive('addExpenseForm', Expense => {
                 amount: null
             };
             $scope.types = Expense.getTypes();
+            $scope.recurrenceTypes = Expense.getRecurrenceTypes();
             $scope.addExpense = () => Expense.addNewExpense($scope.form);
         },
         link: (scope, element, attr) => {
