@@ -1,4 +1,4 @@
-angular.module('expensesApp').directive('filterDropdown', () => {
+angular.module('expensesApp').directive('dropdown', () => {
     "use strict";
 
     return {
