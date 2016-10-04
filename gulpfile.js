@@ -20,7 +20,8 @@ elixir(mix => {
     // Vendor CSS
     mix.styles([
         // Semantic UI
-        './node_modules/semantic-ui/dist/semantic.min.css'
+        './node_modules/semantic-ui/dist/semantic.min.css',
+        './node_modules/semantic-ui-daterangepicker/daterangepicker.min.css'
     ], 'public/css/vendor.css');
 
     // Vendor fonts
@@ -31,8 +32,10 @@ elixir(mix => {
         './node_modules/jquery/dist/jquery.js',
         './node_modules/angular/angular.js',
         './node_modules/angular-ui-router/release/angular-ui-router.min.js',
+        './node_modules/moment/min/moment.min.js',
         // Semantic UI
-        './node_modules/semantic-ui/dist/semantic.min.js'
+        './node_modules/semantic-ui/dist/semantic.min.js',
+        './node_modules/semantic-ui-daterangepicker/daterangepicker.min.js'
     ], 'public/js/vendor.js');
 
     mix.task('templateCache');

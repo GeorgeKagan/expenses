@@ -14,7 +14,8 @@ angular.module('expensesApp').directive('addExpenseForm', Expense => {
             $scope.addExpense = Expense.addNewExpense;
         },
         link: (scope, element, attr) => {
-            element.find('.exp-for-today').checkbox().checkbox({
+            // Init toggle
+            element.find('#exp-for-today').checkbox().checkbox({
                 onChecked: () => {
                     scope.form.forToday = true;
                     scope.$digest();
@@ -23,6 +24,13 @@ angular.module('expensesApp').directive('addExpenseForm', Expense => {
                     scope.form.forToday = false;
                     scope.$digest();
                 }
+            });
+
+            // Init datepicker
+            element.find('#exp-date').daterangepicker({
+                singleDatePicker: true
+            }, (start, end, label) => {
+                dd(start.toISOString(), end.toISOString(), label);
             });
         }
     }

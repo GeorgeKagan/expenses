@@ -2,14 +2,18 @@
     <div class="ui form">
         {{form | json}}<br><br>
         <div class="field">
-            <div class="ui toggle checkbox exp-for-today">
+            <div id="exp-for-today" class="ui toggle checkbox">
                 <input type="checkbox" tabindex="0" class="hidden">
                 <label>For Today</label>
             </div>
         </div>
 
-        <div ng-if="!form.forToday">
+        <div ng-show="!form.forToday">
             <h4 class="ui dividing header">Expense Date</h4>
+            <div class="ui left icon input">
+                <input type="text" name="date" id="exp-date">
+                <i class="calendar icon"></i>
+            </div>
         </div>
 
         <h4 class="ui dividing header">Expense Details</h4>

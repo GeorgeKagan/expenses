@@ -10,7 +10,7 @@ angular.module('expensesApp').directive('addExpenseModal', () => {
                 <i class="add circle icon"></i> ${TITLE}
             </div>
 
-            <div class="ui modal exp-add">
+            <div id="exp-add-modal" class="ui modal">
                 <i class="close icon"></i>
                 <div class="header">
                     ${TITLE}
@@ -27,12 +27,12 @@ angular.module('expensesApp').directive('addExpenseModal', () => {
             </div>`,
         scope: {},
         link: (scope, element, attr) => {
-            let modal = element.find('.exp-add');
+            let modal = element.find('#exp-add-modal');
 
             // Init modal
             modal.modal({
                 transition: 'horizontal flip',
-                blurring: true
+                blurring: false
             });
 
             // Show the add expense modal
