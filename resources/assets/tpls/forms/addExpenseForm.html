@@ -23,7 +23,8 @@
         <div class="grouped fields">
             <div class="field" ng-repeat="recur in ::recurrenceTypes">
                 <div class="ui radio checkbox">
-                    <input id="exp-{{::recur.id}}" type="radio" name="recurrence" tabindex="0" class="hidden" ng-checked="$first">
+                    <input id="exp-{{::recur.id}}" type="radio" name="recurrence" tabindex="0" class="hidden"
+                           value="{{::recur.id}}" ng-checked="$first" ng-model="form.recurrence">
                     <label for="exp-{{::recur.id}}">{{::recur.label}}</label>
                 </div>
             </div>
@@ -34,6 +35,11 @@
         <div class="field required">
             <label>Amount</label>
             <input type="number" name="amount" placeholder="Amount" ng-model="form.amount">
+        </div>
+
+        <div class="field required" ng-if="isPaymentsMode()">
+            <label>Number of payments</label>
+            <input type="number" name="paymentsNum" placeholder="Number of payments" ng-model="form.paymentsNum">
         </div>
 
         <div class="field required">

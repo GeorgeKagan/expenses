@@ -11,11 +11,13 @@ angular.module('expensesApp').directive('addExpenseForm', Expense => {
             $scope.form = {
                 forToday: false,
                 type: null,
-                amount: null
+                amount: null,
+                recurrence: 'one-time'
             };
             $scope.types = Expense.getTypes();
             $scope.recurrenceTypes = Expense.getRecurrenceTypes();
             $scope.addExpense = () => Expense.addNewExpense($scope.form);
+            $scope.isPaymentsMode = () => $scope.form.recurrence === 'payments';
         },
         link: (scope, element, attr) => {
             // Init "for today" toggle
