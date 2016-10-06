@@ -1,4 +1,4 @@
-<form>
+<form name="expenseForm" novalidate>
     <div class="ui form">
 
         <div class="field">
@@ -12,7 +12,7 @@
             <div class="field required">
                 <label>Expense Date</label>
                 <div class="ui left icon input">
-                    <input id="exp-date" type="text" name="date" placeholder="Date" ng-model="form.date">
+                    <input id="exp-date" type="text" name="date" placeholder="Date" ng-model="form.date" required>
                     <i class="calendar icon"></i>
                 </div>
             </div>
@@ -34,12 +34,12 @@
 
         <div class="field required">
             <label>Amount</label>
-            <input type="number" name="amount" placeholder="Amount" ng-model="form.amount">
+            <input type="number" name="amount" placeholder="Amount" ng-model="form.amount" required>
         </div>
 
         <div class="field required" ng-if="isPaymentsMode()">
             <label>Number of payments</label>
-            <input type="number" name="paymentsNum" placeholder="Number of payments" ng-model="form.paymentsNum">
+            <input type="number" name="paymentsNum" placeholder="Number of payments" ng-model="form.paymentsNum" required>
         </div>
 
         <div class="field required">

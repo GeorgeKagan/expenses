@@ -16,17 +16,19 @@ angular.module('expensesApp').directive('addExpenseModal', () => {
                     ${TITLE}
                 </div>
                 <div class="content">
-                    <add-expense-form add-expense="callAddExpense"></add-expense-form>
+                    <add-expense-form expense-form="expenseForm" add-expense="callAddExpense"></add-expense-form>
                 </div>
                 <div class="actions">
-                    <div class="ui positive button">
+                    <button class="ui positive button" ng-disabled="expenseForm.$invalid">
                         <i class="checkmark icon"></i>
-                        Add
-                    </div>
+                        Add Expense
+                    </button>
                 </div>
             </div>`,
         scope: {},
         controller: $scope => {
+            // Link to add-expense-form's form object
+            $scope.expenseForm = null;
             // Link to add-expense-form's method
             $scope.callAddExpense = null;
         },

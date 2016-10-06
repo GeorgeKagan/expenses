@@ -5,9 +5,11 @@ angular.module('expensesApp').directive('addExpenseForm', Expense => {
         restrict: 'E',
         templateUrl: 'forms/addExpenseForm.html',
         scope: {
+            expenseForm: '=',
             addExpense: '='
         },
         controller: $scope => {
+            $scope.expenseForm = {};
             $scope.form = {
                 forToday: false,
                 type: null,
