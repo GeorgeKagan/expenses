@@ -9,28 +9,13 @@
         </div>
 
         <div ng-show="!form.forToday">
-            <h4 class="ui dividing header">Expense Date</h4>
-            <div class="ui left icon input">
-                <input id="exp-date" type="text" name="date" placeholder="Date" ng-model="form.date">
-                <i class="calendar icon"></i>
+            <div class="field required">
+                <label>Expense Date</label>
+                <div class="ui left icon input">
+                    <input id="exp-date" type="text" name="date" placeholder="Date" ng-model="form.date">
+                    <i class="calendar icon"></i>
+                </div>
             </div>
-        </div>
-
-        <h4 class="ui dividing header">Expense Details</h4>
-
-        <div class="field">
-            <label>Type</label>
-            <dropdown label="'Type'" values="types"></dropdown>
-        </div>
-
-        <div class="field">
-            <label>Amount</label>
-            <input type="number" name="amount" placeholder="Amount" ng-model="form.amount">
-        </div>
-
-        <div class="field">
-            <label>Description</label>
-            <input type="text" name="desc" placeholder="Description" ng-model="form.desc">
         </div>
 
         <h4 class="ui dividing header">Expense Recurrence</h4>
@@ -42,6 +27,23 @@
                     <label for="exp-{{::recur.id}}">{{::recur.label}}</label>
                 </div>
             </div>
+        </div>
+
+        <h4 class="ui dividing header">Expense Details</h4>
+
+        <div class="field required">
+            <label>Amount</label>
+            <input type="number" name="amount" placeholder="Amount" ng-model="form.amount">
+        </div>
+
+        <div class="field required">
+            <label>Type</label>
+            <dropdown label="'Type'" values="types"></dropdown>
+        </div>
+
+        <div class="field">
+            <label>Description</label>
+            <input type="text" name="desc" placeholder="Description" ng-model="form.desc">
         </div>
 
     </div>
