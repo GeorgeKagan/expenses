@@ -38,7 +38,7 @@ angular.module('expensesApp').directive('addExpenseModal', () => {
             // Init modal
             modal.modal({
                 transition: 'horizontal flip',
-                blurring: false,
+                blurring: true,
                 onApprove: () => {
                     scope.callAddExpense();
                     return false;

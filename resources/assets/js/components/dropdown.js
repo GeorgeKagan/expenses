@@ -6,7 +6,7 @@ angular.module('expensesApp').directive('dropdown', () => {
         replace: true,
         template: `
                 <div class="ui selection dropdown">
-                    <input type="hidden" name="{{::model}}">
+                    <input type="hidden" name="{{::model}}" ng-model="model" required>
                     <i class="dropdown icon"></i>
                     <div class="default text">{{::label}}</div>
                     <div class="menu">

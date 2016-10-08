@@ -29,17 +29,20 @@ angular.module('expensesApp').directive('addExpenseForm', Expense => {
             element.find('#exp-for-today').checkbox().checkbox({
                 onChecked: () => {
                     scope.form.forToday = true;
-                    scope.$digest();
+                    scope.$apply();
                 },
                 onUnchecked: () => {
                     scope.form.forToday = false;
-                    scope.$digest();
+                    scope.$apply();
                 }
             }).checkbox('set checked');
 
             // Init "date" datepicker
             scope.$watch('form.forToday', () => {
                 element.find('#exp-date').daterangepicker({
+                    startDate: moment().format('MM/DD/YYYY'),
+                    maxDate: moment().format('MM/DD/YYYY'),
+                    parentEl: '#exp-add-modal',
                     singleDatePicker: true
                 }, (start, end, label) => {
                     dd(start.toISOString(), end.toISOString(), label);

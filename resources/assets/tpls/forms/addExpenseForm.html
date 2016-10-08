@@ -18,18 +18,6 @@
             </div>
         </div>
 
-        <h4 class="ui dividing header">Expense Recurrence</h4>
-
-        <div class="grouped fields">
-            <div class="field" ng-repeat="recur in ::recurrenceTypes">
-                <div class="ui radio checkbox">
-                    <input id="exp-{{::recur.id}}" type="radio" name="recurrence" tabindex="0" class="hidden"
-                           value="{{::recur.id}}" ng-checked="$first" ng-model="form.recurrence">
-                    <label for="exp-{{::recur.id}}">{{::recur.label}}</label>
-                </div>
-            </div>
-        </div>
-
         <h4 class="ui dividing header">Expense Details</h4>
 
         <div class="field required seven column wide">
@@ -50,6 +38,18 @@
         <div class="field seven column wide">
             <label>Description</label>
             <input type="text" name="desc" placeholder="Description" ng-model="form.desc">
+        </div>
+
+        <h4 class="ui dividing header">Expense Recurrence</h4>
+
+        <div class="grouped fields">
+            <div class="field" ng-repeat="recur in ::recurrenceTypes">
+                <div class="ui radio checkbox">
+                    <input id="exp-{{::recur.id}}" type="radio" name="recurrence" tabindex="0" class="hidden"
+                           value="{{::recur.id}}" ng-checked="$first" ng-model="form.recurrence">
+                    <label for="exp-{{::recur.id}}">{{::recur.label}}</label>
+                </div>
+            </div>
         </div>
 
     </div>
