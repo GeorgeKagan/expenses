@@ -12,9 +12,12 @@ angular.module('expensesApp').directive('addExpenseForm', Expense => {
             $scope.expenseForm = {};
             $scope.form = {
                 forToday: true,
-                type: null,
+                date: null,
+                recurrence: 'one-time',
                 amount: null,
-                recurrence: 'one-time'
+                paymentsNum: null,
+                type: null,
+                desc: null
             };
             $scope.types = Expense.getTypes();
             $scope.recurrenceTypes = Expense.getRecurrenceTypes();

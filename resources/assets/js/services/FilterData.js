@@ -9,10 +9,10 @@ angular.module('expensesApp').factory('FilterData', () => {
      */
     service.getYears = () => {
         return [
-            2016,
-            2015,
-            2014,
-            2013
+            {id: 2016, label: 2016},
+            {id: 2015, label: 2015},
+            {id: 2014, label: 2014},
+            {id: 2013, label: 2013}
         ];
     };
 
@@ -22,18 +22,18 @@ angular.module('expensesApp').factory('FilterData', () => {
      */
     service.getMonths = () => {
         return [
-            'December',
-            'November',
-            'October',
-            'September',
-            'August',
-            'July',
-            'June',
-            'May',
-            'April',
-            'March',
-            'February',
-            'January'
+            {id: 'december', label: 'December'},
+            {id: 'november', label: 'November'},
+            {id: 'october', label: 'October'},
+            {id: 'september', label: 'September'},
+            {id: 'august', label: 'August'},
+            {id: 'july', label: 'July'},
+            {id: 'june', label: 'June'},
+            {id: 'may', label: 'May'},
+            {id: 'april', label: 'April'},
+            {id: 'march', label: 'March'},
+            {id: 'february', label: 'February'},
+            {id: 'january', label: 'January'}
         ];
     };
 
