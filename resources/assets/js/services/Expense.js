@@ -2,10 +2,16 @@ angular.module('expensesApp').factory('Expense', () => {
     "use strict";
 
     const TYPES = [
-        {id: 'fuel', label: 'Fuel'},
-        {id: 'food', label: 'Food'},
-        {id: 'home', label: 'Home'},
-        {id: 'rent', label: 'Rent'}
+        {id: 'food', label: 'Food', icon: 'food'},
+        {id: 'fuel', label: 'Fuel', icon: 'road'},
+        {id: 'recreation', label: 'Recreation', icon: 'coffee'},
+        {id: 'cigarettes', label: 'Cigarettes', icon: 'fire'},
+        {id: 'home', label: 'Home', icon: 'home'},
+        {id: 'car', label: 'Car', icon: 'car'},
+        {id: 'clothes', label: 'Clothes', icon: 'shopping bag'},
+        {id: 'utilities', label: 'Utilities', icon: 'idea'},
+        {id: 'rent', label: 'Rent', icon: 'building'},
+        {id: 'misc', label: 'Misc.', icon: 'ellipsis horizontal'},
     ];
 
     const RECURRENCE_TYPES = [

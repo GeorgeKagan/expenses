@@ -1,6 +1,8 @@
 // Variables
 @import "variables";
 
+// App header
+
 .masthead.segment {
   min-height: 200px;
   padding: 1em 0;
@@ -11,4 +13,27 @@
   margin-bottom: 0;
   font-size: 4em;
   font-weight: normal;
+}
+
+// Scrollbars
+
+
+::-webkit-scrollbar-track
+{
+  background-color: #F5F5F5;
+}
+
+::-webkit-scrollbar
+{
+  width: 11px;
+  background-color: #F5F5F5;
+}
+
+::-webkit-scrollbar-thumb
+{
+  width: 7px;
+  border: 2px solid transparent;
+  border-radius: 5px;
+  background-clip: padding-box;
+  background-color: #666;
 }
