@@ -11,7 +11,7 @@ angular.module('expensesApp').directive('addExpenseForm', Expense => {
         controller: $scope => {
             $scope.expenseForm = {};
             $scope.form = {
-                forToday: false,
+                forToday: true,
                 type: null,
                 amount: null,
                 recurrence: 'one-time'
@@ -32,13 +32,15 @@ angular.module('expensesApp').directive('addExpenseForm', Expense => {
                     scope.form.forToday = false;
                     scope.$digest();
                 }
-            });
+            }).checkbox('set checked');
 
             // Init "date" datepicker
-            element.find('#exp-date').daterangepicker({
-                singleDatePicker: true
-            }, (start, end, label) => {
-                dd(start.toISOString(), end.toISOString(), label);
+            scope.$watch('form.forToday', () => {
+                element.find('#exp-date').daterangepicker({
+                    singleDatePicker: true
+                }, (start, end, label) => {
+                    dd(start.toISOString(), end.toISOString(), label);
+                });
             });
         }
     }
