@@ -1,5 +1,5 @@
 <form name="expenseForm" novalidate>
-    <div class="ui form">
+    <div class="ui form row">
 
         <div class="field">
             <div id="exp-for-today" class="ui toggle checkbox">
@@ -9,7 +9,7 @@
         </div>
 
         <div ng-if="!form.forToday">
-            <div class="field required">
+            <div class="field required seven column wide">
                 <label>Expense Date</label>
                 <div class="ui left icon input">
                     <input id="exp-date" type="text" name="date" placeholder="Date" ng-model="form.date" required>
@@ -32,22 +32,22 @@
 
         <h4 class="ui dividing header">Expense Details</h4>
 
-        <div class="field required">
+        <div class="field required seven column wide">
             <label>Amount</label>
             <input type="number" name="amount" placeholder="Amount" ng-model="form.amount" required>
         </div>
 
-        <div class="field required" ng-if="isPaymentsMode()">
+        <div class="field required seven column wide" ng-if="isPaymentsMode()">
             <label>Number of payments</label>
             <input type="number" name="paymentsNum" placeholder="Number of payments" ng-model="form.paymentsNum" required>
         </div>
 
-        <div class="field required">
+        <div class="field required seven column wide">
             <label>Type</label>
             <dropdown label="'Type'" values="types" model="form.type"></dropdown>
         </div>
 
-        <div class="field">
+        <div class="field seven column wide">
             <label>Description</label>
             <input type="text" name="desc" placeholder="Description" ng-model="form.desc">
         </div>
