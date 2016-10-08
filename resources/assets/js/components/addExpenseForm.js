@@ -11,8 +11,7 @@ angular.module('expensesApp').directive('addExpenseForm', Expense => {
         controller: $scope => {
             $scope.expenseForm = {};
             $scope.form = {
-                forToday: true,
-                date: null,
+                date: moment().format('MM/DD/YYYY'),
                 recurrence: 'one-time',
                 amount: null,
                 paymentsNum: null,
@@ -24,29 +23,13 @@ angular.module('expensesApp').directive('addExpenseForm', Expense => {
             $scope.addExpense = () => Expense.addNewExpense($scope.form);
             $scope.isPaymentsMode = () => $scope.form.recurrence === 'payments';
         },
-        link: (scope, element, attr) => {
-            // Init "for today" toggle
-            element.find('#exp-for-today').checkbox().checkbox({
-                onChecked: () => {
-                    scope.form.forToday = true;
-                    scope.$apply();
-                },
-                onUnchecked: () => {
-                    scope.form.forToday = false;
-                    scope.$apply();
-                }
-            }).checkbox('set checked');
-
+        link: (scope, element) => {
             // Init "date" datepicker
-            scope.$watch('form.forToday', () => {
-                element.find('#exp-date').daterangepicker({
-                    startDate: moment().format('MM/DD/YYYY'),
-                    maxDate: moment().format('MM/DD/YYYY'),
-                    parentEl: '#exp-add-modal',
-                    singleDatePicker: true
-                }, (start, end, label) => {
-                    dd(start.toISOString(), end.toISOString(), label);
-                });
+            element.find('#exp-date').daterangepicker({
+                minDate: moment().subtract(3, 'year').format('MM/DD/YYYY'),
+                maxDate: moment().format('MM/DD/YYYY'),
+                parentEl: '#exp-add-modal',
+                singleDatePicker: true
             });
         }
     }

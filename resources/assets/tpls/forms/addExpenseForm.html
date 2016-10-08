@@ -1,20 +1,11 @@
 <form name="expenseForm" novalidate>
     <div class="ui form row">
 
-        <div class="field">
-            <div id="exp-for-today" class="ui toggle checkbox">
-                <input type="checkbox" tabindex="0" class="hidden">
-                <label>For Today</label>
-            </div>
-        </div>
-
-        <div ng-if="!form.forToday">
-            <div class="field required seven column wide">
-                <label>Expense Date</label>
-                <div class="ui left icon input">
-                    <input id="exp-date" type="text" name="date" placeholder="Date" ng-model="form.date" required>
-                    <i class="calendar icon"></i>
-                </div>
+        <div class="field required seven column wide">
+            <label>Expense Date</label>
+            <div class="ui left icon input">
+                <input id="exp-date" type="text" name="date" placeholder="Date" ng-model="form.date" readonly required>
+                <i class="calendar icon"></i>
             </div>
         </div>
 
