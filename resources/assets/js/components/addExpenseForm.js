@@ -13,7 +13,7 @@ angular.module('expensesApp').directive('addExpenseForm', (Expense, Settings) =>
             $scope.expenseForm = {};
             $scope.form = {
                 date: moment().format(Settings.getDateFormat()),
-                recurrence: 'one-time',
+                recurrence: 'once',
                 amount: null,
                 paymentsNum: null,
                 type: null,

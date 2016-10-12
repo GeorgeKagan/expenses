@@ -15,7 +15,7 @@ angular.module('expensesApp').factory('Expense', () => {
     ];
 
     const RECURRENCE_TYPES = [
-        {id: 'one-time', label: 'One-time'},
+        {id: 'once', label: 'Once'},
         {id: 'monthly', label: 'Monthly'},
         {id: 'payments', label: 'Payments'}
     ];
