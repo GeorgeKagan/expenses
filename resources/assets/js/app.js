@@ -1,4 +1,4 @@
-var expensesApp = angular.module('expensesApp', ['ui.router']);
+var expensesApp = angular.module('expensesApp', ['ngAnimate', 'ui.router']);
 
 expensesApp.config(($stateProvider, $urlRouterProvider) => {
 
