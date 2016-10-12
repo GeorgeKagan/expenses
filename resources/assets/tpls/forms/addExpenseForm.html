@@ -1,39 +1,44 @@
 <form name="expenseForm" novalidate>
-    <div class="ui form row">
+    <div class="ui form">
 
-        <div class="field required seven column wide">
-            <label>Expense Date</label>
-            <div class="ui left icon input">
-                <input id="exp-date" type="text" name="date" placeholder="Date" ng-model="form.date" readonly required>
-                <i class="calendar icon"></i>
+        <div class="two fields">
+            <div class="field required">
+                <label>Amount</label>
+                <input type="number" name="amount" placeholder="Amount" ng-model="form.amount" required>
+            </div>
+
+            <div class="field required" ng-if="isPaymentsMode()">
+                <label>Number of payments</label>
+                <input type="number" name="paymentsNum" placeholder="Number of payments" ng-model="form.paymentsNum" required>
             </div>
         </div>
 
-        <h4 class="ui dividing header">Expense Details</h4>
+        <div class="two fields">
+            <div class="field required">
+                <label>Type</label>
+                <dropdown label="'Type'" values="types" model="form.type"></dropdown>
+            </div>
 
-        <div class="field required seven column wide">
-            <label>Amount</label>
-            <input type="number" name="amount" placeholder="Amount" ng-model="form.amount" required>
+            <div class="field">
+                <label>Description</label>
+                <input type="text" name="desc" placeholder="Description" ng-model="form.desc">
+            </div>
         </div>
 
-        <div class="field required seven column wide" ng-if="isPaymentsMode()">
-            <label>Number of payments</label>
-            <input type="number" name="paymentsNum" placeholder="Number of payments" ng-model="form.paymentsNum" required>
-        </div>
+        <h4 class="ui dividing header">Date & Recurrence</h4>
 
-        <div class="field required seven column wide">
-            <label>Type</label>
-            <dropdown label="'Type'" values="types" model="form.type"></dropdown>
+        <div class="two fields">
+            <div class="field">
+                <label>Expense Date</label>
+                <div class="ui left icon input">
+                    <input id="exp-date" type="text" name="date" placeholder="Date" ng-model="form.date" readonly required>
+                    <i class="calendar icon"></i>
+                </div>
+            </div>
         </div>
-
-        <div class="field seven column wide">
-            <label>Description</label>
-            <input type="text" name="desc" placeholder="Description" ng-model="form.desc">
-        </div>
-
-        <h4 class="ui dividing header">Expense Recurrence</h4>
 
         <div class="grouped fields">
+            <label>Expense Recurrence</label><br>
             <div class="field" ng-repeat="recur in ::recurrenceTypes">
                 <div class="ui radio checkbox">
                     <input id="exp-{{::recur.id}}" type="radio" name="recurrence" tabindex="0" class="hidden"

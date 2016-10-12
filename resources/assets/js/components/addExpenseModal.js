@@ -20,7 +20,7 @@ angular.module('expensesApp').directive('addExpenseModal', () => {
                 </div>
                 <div class="actions">
                     <button class="ui positive button" autofocus ng-disabled="expenseForm.$invalid">
-                        <i class="checkmark icon"></i>
+                        <i class="add circle icon"></i>
                         Add Expense
                     </button>
                 </div>

@@ -1,0 +1,31 @@
+// Form
+
+.ui.form {
+  input[type="text"],
+  input[type="number"],
+  .ui.dropdown
+  {
+    margin: 5px 0 0 0;
+    outline: none;
+    -webkit-appearance: none;
+    tap-highlight-color: rgba(255, 255, 255, 0);
+    line-height: 1.2142em;
+    padding: 1em 1.2em;
+    font-size: 1em;
+    background: #ffffff;
+    border: 2px solid rgba(34, 36, 38, 0.15);
+    color: rgba(0, 0, 0, 0.87);
+    border-radius: 0.28571429rem;
+    box-shadow: 0 0 0 0 transparent inset;
+    transition: color 0.1s ease, border-color 0.1s ease;
+  }
+
+  .ui.selection.dropdown > .dropdown.icon {
+    top: 1.2em;
+  }
+
+  .ui.icon.input > i.icon {
+    left: 3px;
+    top: 0.1em;
+  }
+}
