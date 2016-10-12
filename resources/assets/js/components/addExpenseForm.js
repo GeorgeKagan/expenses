@@ -1,4 +1,4 @@
-angular.module('expensesApp').directive('addExpenseForm', Expense => {
+angular.module('expensesApp').directive('addExpenseForm', (Expense, Settings) => {
     "use strict";
 
     return {
@@ -12,7 +12,7 @@ angular.module('expensesApp').directive('addExpenseForm', Expense => {
         controller: $scope => {
             $scope.expenseForm = {};
             $scope.form = {
-                date: moment().format('MM/DD/YYYY'),
+                date: moment().format(Settings.getDateFormat()),
                 recurrence: 'one-time',
                 amount: null,
                 paymentsNum: null,
@@ -27,8 +27,8 @@ angular.module('expensesApp').directive('addExpenseForm', Expense => {
         link: (scope, element) => {
             // Init "date" datepicker
             element.find('#exp-date').daterangepicker({
-                minDate: moment().subtract(3, 'year').format('MM/DD/YYYY'),
-                maxDate: moment().format('MM/DD/YYYY'),
+                minDate: moment().subtract(3, 'year').format(Settings.getDateFormat()),
+                maxDate: moment().format(Settings.getDateFormat()),
                 singleDatePicker: true
             });
         }

@@ -1,6 +1,6 @@
 var expensesApp = angular.module('expensesApp', ['ngAnimate', 'ngMessages', 'ui.router', 'fcsa-number']);
 
-expensesApp.config(($stateProvider, $urlRouterProvider, fcsaNumberConfigProvider) => {
+expensesApp.config(($stateProvider, $urlRouterProvider, fcsaNumberConfigProvider, SettingsProvider) => {
 
     $urlRouterProvider.otherwise('home');
 
@@ -16,7 +16,7 @@ expensesApp.config(($stateProvider, $urlRouterProvider, fcsaNumberConfigProvider
         min: 0,
         max: 9999999,
         preventInvalidInput: true,
-        prepend: '₪'
+        prepend: SettingsProvider.$get().getCurrencySymbol()
     });
 
 });
