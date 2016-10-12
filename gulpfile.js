@@ -33,6 +33,7 @@ elixir(mix => {
         './node_modules/angular/angular.js',
         './node_modules/angular-animate/angular-animate.min.js',
         './node_modules/angular-ui-router/release/angular-ui-router.min.js',
+        './node_modules/angular-fcsa-number/src/fcsaNumber.min.js',
         './node_modules/moment/min/moment.min.js',
         // Semantic UI
         './node_modules/semantic-ui/dist/semantic.min.js',
