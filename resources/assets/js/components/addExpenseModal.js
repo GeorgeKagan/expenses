@@ -11,15 +11,15 @@ angular.module('expensesApp').directive('addExpenseModal', () => {
             </div>
 
             <div id="exp-add-modal" class="ui modal">
-                <i class="close icon"></i>
                 <div class="header">
                     ${TITLE}
                 </div>
                 <div class="content">
-                    <add-expense-form expense-form="expenseForm" add-expense="callAddExpense"></add-expense-form>
+                    <add-expense-form expense-form="expenseForm" add-expense="callAddExpense" is-adding="isAdding"></add-expense-form>
                 </div>
                 <div class="actions">
-                    <button class="ui positive button" autofocus ng-disabled="expenseForm.$invalid">
+                    <button class="ui positive large button" ng-disabled="expenseForm.$invalid || isAdding" 
+                            ng-class="{'loading': isAdding}">
                         <i class="add circle icon"></i>
                         Add Expense
                     </button>
@@ -27,6 +27,7 @@ angular.module('expensesApp').directive('addExpenseModal', () => {
             </div>`,
         scope: {},
         controller: $scope => {
+            $scope.isAdding = false;
             // Link to add-expense-form's form object
             $scope.expenseForm = null;
             // Link to add-expense-form's method
@@ -38,9 +39,11 @@ angular.module('expensesApp').directive('addExpenseModal', () => {
             // Init modal
             modal.modal({
                 transition: 'horizontal flip',
-                blurring: true,
+                blurring: false,
                 onApprove: () => {
+                    scope.isAdding = true;
                     scope.callAddExpense();
+                    scope.$digest();
                     return false;
                 }
             });
