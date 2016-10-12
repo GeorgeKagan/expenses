@@ -34,3 +34,17 @@
   background-clip: padding-box;
   background-color: #666;
 }
+
+// Various classes
+
+ng-messages {
+  color: $red;
+  display: block;
+  position: relative;
+  overflow: hidden;
+
+  ng-message {
+    display: block;
+    margin: 0.5em 0;
+  }
+}

@@ -1,4 +1,4 @@
-var expensesApp = angular.module('expensesApp', ['ngAnimate', 'ui.router', 'fcsa-number']);
+var expensesApp = angular.module('expensesApp', ['ngAnimate', 'ngMessages', 'ui.router', 'fcsa-number']);
 
 expensesApp.config(($stateProvider, $urlRouterProvider, fcsaNumberConfigProvider) => {
 
@@ -15,7 +15,6 @@ expensesApp.config(($stateProvider, $urlRouterProvider, fcsaNumberConfigProvider
     fcsaNumberConfigProvider.setDefaultOptions({
         min: 0,
         max: 9999999,
-        maxDecimals: 2,
         preventInvalidInput: true,
         prepend: '₪'
     });

@@ -5,6 +5,9 @@
             <div class="field required">
                 <label>Amount</label>
                 <input type="text" name="amount" placeholder="Amount" ng-model="form.amount" required fcsa-number>
+                <ng-messages for="expenseForm.amount.$error" role="alert">
+                    <ng-message when="fcsaNumber">Amount cannot be negative</ng-message>
+                </ng-messages>
             </div>
 
             <div class="field required nga-fast nga-rotate-down" ng-if="isPaymentsMode()">
