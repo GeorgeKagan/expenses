@@ -29,7 +29,6 @@ angular.module('expensesApp').directive('addExpenseForm', Expense => {
             element.find('#exp-date').daterangepicker({
                 minDate: moment().subtract(3, 'year').format('MM/DD/YYYY'),
                 maxDate: moment().format('MM/DD/YYYY'),
-                parentEl: '#exp-add-modal .content',
                 singleDatePicker: true
             });
         }
