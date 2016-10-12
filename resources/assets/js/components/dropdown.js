@@ -20,13 +20,14 @@ angular.module('expensesApp').directive('dropdown', () => {
             values: '=',
             model: '='
         },
-        link: (scope, element, attr) => {
+        link: (scope, element) => {
             element.dropdown({
                 onChange: value => {
                     scope.model = value;
                     scope.$apply();
                 }
             });
+            scope.$on('formSubmitSuccess', () => element.dropdown('clear').dropdown('set text', scope.label));
         }
     }
 });

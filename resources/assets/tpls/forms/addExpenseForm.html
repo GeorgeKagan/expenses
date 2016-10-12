@@ -54,8 +54,11 @@
             </div>
         </div>
 
-        <div class="ui dimmer inverted" ng-class="{'active': isAdding}">
-            <div class="ui text big loader">Crunching numbers...</div>
+        <div class="ui dimmer inverted" ng-class="{'active': isAdding!==null}">
+            <div class="ui text big loader" ng-if="isAdding===true">Crunching numbers...</div>
+            <div class="massive-icon-centered nga-default nga-fade" ng-if="isAdding===false">
+                <i class="massive checkmark icon"></i>
+            </div>
         </div>
 
     </div>

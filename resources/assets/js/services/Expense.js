@@ -1,4 +1,4 @@
-angular.module('expensesApp').factory('Expense', () => {
+angular.module('expensesApp').factory('Expense', Settings => {
     "use strict";
 
     const TYPES = [
@@ -21,6 +21,21 @@ angular.module('expensesApp').factory('Expense', () => {
     ];
 
     let service = {};
+
+    /**
+     * Initializes the form data state.
+     * @returns Object
+     */
+    service.initFormState = () => {
+        return {
+            date: moment().format(Settings.getDateFormat()),
+            recurrence: 'once',
+            amount: null,
+            paymentsNum: null,
+            type: null,
+            desc: null
+        };
+    };
 
     /**
      * Add a new expense to the DB.

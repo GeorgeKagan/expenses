@@ -1,4 +1,4 @@
-angular.module('expensesApp').directive('addExpenseForm', (Expense, Settings) => {
+angular.module('expensesApp').directive('addExpenseForm', ($rootScope, $timeout, Expense, Settings) => {
     "use strict";
 
     return {
@@ -11,18 +11,18 @@ angular.module('expensesApp').directive('addExpenseForm', (Expense, Settings) =>
         },
         controller: $scope => {
             $scope.expenseForm = {};
-            $scope.form = {
-                date: moment().format(Settings.getDateFormat()),
-                recurrence: 'once',
-                amount: null,
-                paymentsNum: null,
-                type: null,
-                desc: null
-            };
+            $scope.form = Expense.initFormState();
             $scope.types = Expense.getTypes();
             $scope.recurrenceTypes = Expense.getRecurrenceTypes();
-            $scope.addExpense = () => Expense.addNewExpense($scope.form);
             $scope.isPaymentsMode = () => $scope.form.recurrence === 'payments';
+
+            $scope.addExpense = () => {
+                Expense.addNewExpense($scope.form);
+                $timeout(() => {
+                    $scope.form = Expense.initFormState();
+                    $rootScope.$broadcast('formSubmitSuccess');
+                }, 1000);
+            };
         },
         link: (scope, element) => {
             // Init "date" datepicker

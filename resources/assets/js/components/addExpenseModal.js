@@ -1,4 +1,4 @@
-angular.module('expensesApp').directive('addExpenseModal', () => {
+angular.module('expensesApp').directive('addExpenseModal', $timeout => {
     "use strict";
 
     const TITLE = 'Add New Expense';
@@ -18,8 +18,8 @@ angular.module('expensesApp').directive('addExpenseModal', () => {
                     <add-expense-form expense-form="expenseForm" add-expense="callAddExpense" is-adding="isAdding"></add-expense-form>
                 </div>
                 <div class="actions">
-                    <button class="ui positive large button" ng-disabled="expenseForm.$invalid || isAdding" 
-                            ng-class="{'loading': isAdding}">
+                    <button class="ui positive large button" ng-disabled="expenseForm.$invalid || isAdding!==null" 
+                            ng-class="{'loading': isAdding===true}">
                         <i class="add circle icon"></i>
                         Add Expense
                     </button>
@@ -27,7 +27,7 @@ angular.module('expensesApp').directive('addExpenseModal', () => {
             </div>`,
         scope: {},
         controller: $scope => {
-            $scope.isAdding = false;
+            $scope.isAdding = null;
             // Link to add-expense-form's form object
             $scope.expenseForm = null;
             // Link to add-expense-form's method
@@ -45,13 +45,20 @@ angular.module('expensesApp').directive('addExpenseModal', () => {
                     scope.callAddExpense();
                     scope.$digest();
                     return false;
-                }
+                },
+                onHidden: () => scope.isAdding = null
             });
 
             // Show the add expense modal
             scope.showModal = () => {
                 modal.modal('show');
             };
+
+            // On modal form submit success - clean up and hide
+            scope.$on('formSubmitSuccess', () => {
+                scope.isAdding = false;
+                $timeout(() => modal.modal('hide'), 1000);
+            });
         }
     }
 });
