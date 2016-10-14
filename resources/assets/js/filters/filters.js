@@ -6,7 +6,7 @@ angular.module('expensesApp')
             let type = Expense.getRecurrenceTypes().find(val => val.id === item);
             return $sce.trustAsHtml(
                 `<div data-tooltip="${type.label}" data-inverted>
-                    <i class="${type.icon} icon"></i>
+                    <i class="grey ${type.icon} icon"></i>
                 </div>`);
         };
     })
@@ -17,7 +17,7 @@ angular.module('expensesApp')
             let type = Expense.getTypes().find(val => val.id === item);
             return $sce.trustAsHtml(
                 `<div data-tooltip="${type.label}" data-inverted>
-                    <i class="${type.icon} icon"></i>
+                    <i class="grey ${type.icon} icon"></i>
                 </div>`);
         };
     })

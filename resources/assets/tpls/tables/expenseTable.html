@@ -6,6 +6,7 @@
             <th st-sort="type">Type</th>
             <th st-sort="amount">Amount</th>
             <th>Description</th>
+            <th></th>
         </tr>
     </thead>
     <tbody>
@@ -13,7 +14,9 @@
             <td class="left aligned collapsing">
                 <div ng-bind-html="row.recurrence | recurrence2icon"></div>
             </td>
-            <td>{{row.date | date}}</td>
+            <td>
+                {{row.date | date}}
+            </td>
             <td ng-bind-html="row.type | type2icon"></td>
 
             <td ng-if="row.recurrence!=='payments'">
@@ -34,7 +37,12 @@
                 </h4>
             </td>
 
-            <td><small>{{::row.description}}</small></td>
+            <td>
+                <small>{{::row.description}}</small>
+            </td>
+            <td>
+                <expense-actions></expense-actions>
+            </td>
         </tr>
     </tbody>
     <tfoot>
@@ -43,6 +51,7 @@
             <th></th>
             <th></th>
             <th><h2 class="exp-red">{{::amountSum | currency:currencySymbol}}</h2></th>
+            <th></th>
             <th></th>
         </tr>
     </tfoot>
