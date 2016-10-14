@@ -1,0 +1,18 @@
+<table st-table="rowCollection" class="ui celled table">
+    <thead>
+    <tr>
+        <th st-sort="getters.date">Date</th>
+        <th st-sort="type">Type</th>
+        <th st-sort="amount">Amount</th>
+        <th>Description</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr ng-repeat="row in rowCollection">
+        <td>{{row.date | date}}</td>
+        <td>{{row.type}}</td>
+        <td>{{row.amount | currency}}</td>
+        <td>{{row.description}}</td>
+    </tr>
+    </tbody>
+</table>

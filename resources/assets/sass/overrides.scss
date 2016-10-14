@@ -41,3 +41,14 @@
     top: 0.1em;
   }
 }
+
+// Table
+table.ui.table {
+  .st-sort-ascent:before{
+    content: '\25B2';
+  }
+
+  .st-sort-descent:before{
+    content: '\25BC';
+  }
+}

@@ -1,4 +1,4 @@
-var expensesApp = angular.module('expensesApp', ['ngAnimate', 'ngMessages', 'ui.router', 'fcsa-number']);
+var expensesApp = angular.module('expensesApp', ['ngAnimate', 'ngMessages', 'ui.router', 'smart-table', 'fcsa-number']);
 
 expensesApp.config(($stateProvider, $urlRouterProvider, fcsaNumberConfigProvider, SettingsProvider) => {
 
