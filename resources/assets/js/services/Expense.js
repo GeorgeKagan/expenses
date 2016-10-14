@@ -15,9 +15,9 @@ angular.module('expensesApp').factory('Expense', Settings => {
     ];
 
     const RECURRENCE_TYPES = [
-        {id: 'once', label: 'Once'},
-        {id: 'monthly', label: 'Monthly'},
-        {id: 'payments', label: 'Payments'}
+        {id: 'once', label: 'Once', icon: Settings.getCurrencyName()},
+        {id: 'monthly', label: 'Monthly', icon: 'repeat'},
+        {id: 'payments', label: 'Payments', icon: 'payment'}
     ];
 
     let service = {};
@@ -54,6 +54,17 @@ angular.module('expensesApp').factory('Expense', Settings => {
      * Get the supported recurrence types.
      */
     service.getRecurrenceTypes = () => RECURRENCE_TYPES;
+
+    /**
+     * Get sum of all amounts.
+     * @param expenses
+     * @returns {*}
+     */
+    service.getAmountSum = expenses => {
+        return expenses.map(item => {
+            return item.recurrence === 'payments' ? item.amount / item.paymentsNum : item.amount;
+        }).reduce((a, b) => a + b);
+    };
 
     return service;
 });
