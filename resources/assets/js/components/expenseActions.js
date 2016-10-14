@@ -11,6 +11,7 @@ angular.module('expensesApp').directive('expenseActions', () => {
         link: (scope, element) => {
             element.find('button').popup({
                 position: 'top left',
+                on: 'click',
                 inline: false,
                 setFluidWidth: true,
                 hoverable: true,
