@@ -1,18 +1,49 @@
-<table st-table="rowCollection" class="ui celled table">
+<table st-table="rowCollection" class="ui striped celled blue padded table">
     <thead>
-    <tr>
-        <th st-sort="getters.date">Date</th>
-        <th st-sort="type">Type</th>
-        <th st-sort="amount">Amount</th>
-        <th>Description</th>
-    </tr>
+        <tr class="center aligned">
+            <th></th>
+            <th st-sort="getters.date">Date</th>
+            <th st-sort="type">Type</th>
+            <th st-sort="amount">Amount</th>
+            <th>Description</th>
+        </tr>
     </thead>
     <tbody>
-    <tr ng-repeat="row in rowCollection">
-        <td>{{row.date | date}}</td>
-        <td>{{row.type}}</td>
-        <td>{{row.amount | currency}}</td>
-        <td>{{row.description}}</td>
-    </tr>
+        <tr class="center aligned" ng-repeat="row in rowCollection">
+            <td class="left aligned collapsing">
+                <div ng-bind-html="row.recurrence | recurrence2icon"></div>
+            </td>
+            <td>{{row.date | date}}</td>
+            <td ng-bind-html="row.type | type2icon"></td>
+
+            <td ng-if="row.recurrence!=='payments'">
+                <h4 class="ui header">
+                    <div class="content">
+                        {{row.amount | currency:currencySymbol}}
+                    </div>
+                </h4>
+            </td>
+
+            <td ng-if="row.recurrence==='payments'">
+                <h4 class="ui header">
+                    <div class="content">
+                        {{(row.amount / row.paymentsNum) | currency:currencySymbol}}
+                        <sup class="ui mini circular gray label">{{row.currPaymentNum}}/{{row.paymentsNum}}</sup>
+                        <div class="sub header">{{row.amount | currency:currencySymbol}} total</div>
+                    </div>
+                </h4>
+            </td>
+
+            <td><small>{{::row.description}}</small></td>
+        </tr>
     </tbody>
+    <tfoot>
+        <tr class="center aligned">
+            <th></th>
+            <th></th>
+            <th></th>
+            <th><h2 class="exp-red">{{::amountSum | currency:currencySymbol}}</h2></th>
+            <th></th>
+        </tr>
+    </tfoot>
 </table>

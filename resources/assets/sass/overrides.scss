@@ -44,11 +44,16 @@
 
 // Table
 table.ui.table {
-  .st-sort-ascent:before{
+  .st-sort-ascent:after,
+  .st-sort-descent:after {
+    margin: 0 5px;
+    color: #666;
+    font-size: 11px;
+  }
+  .st-sort-ascent:after {
     content: '\25B2';
   }
-
-  .st-sort-descent:before{
+  .st-sort-descent:after {
     content: '\25BC';
   }
 }
