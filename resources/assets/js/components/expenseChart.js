@@ -49,6 +49,7 @@ angular.module('expensesApp').directive('expenseChart', (Expense, Chart, Setting
                         borderWidth: 0,
                         borderRadius: 0,
                         shadow: false,
+                        headerFormat: '<b>{point.key}</b> - ',
                         pointFormat: '<b>{point.y}</b> {series.name}',
                         valuePrefix: Settings.getCurrencySymbol(),
                     },

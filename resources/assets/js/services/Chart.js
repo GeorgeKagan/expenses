@@ -8,25 +8,11 @@ angular.module('expensesApp').factory('Chart', () => {
      */
     service.configChartLib = () => {
         Highcharts.setOptions({
-            colors: ['#2F4550', '#586F7C', '#B8DBD9', '#05668D', '#9BC53D', '#00A896', '#A9ACA9', '#60495A', '#3F3244', '#2F2235'],
+            // colors: ['#2F4550', '#586F7C', '#B8DBD9', '#05668D', '#9BC53D', '#00A896', '#A9ACA9', '#60495A', '#3F3244', '#2F2235'],
+            colors: ['#22223B', '#4A4E69', '#9A8C98', '#C9ADA7', '#F2E9E4', '#B8F3FF', '#8AC6D0', '#63768D', '#554971', '#36213E'],
             lang: {
                 thousandsSep: ','
             }
-        });
-
-        // Add soft gradient to predefined (above) chart colors
-        Highcharts.getOptions().colors = Highcharts.map(Highcharts.getOptions().colors, color => {
-            return {
-                radialGradient: {
-                    cx: 0.5,
-                    cy: 0.3,
-                    r: 0.7
-                },
-                stops: [
-                    [0, color],
-                    [1, Highcharts.Color(color).brighten(-0.1).get('rgb')] // darken
-                ]
-            };
         });
     };
 
