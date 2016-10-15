@@ -39,7 +39,10 @@ elixir(mix => {
         './node_modules/moment/min/moment.min.js',
         // Semantic UI
         './node_modules/semantic-ui/dist/semantic.min.js',
-        './node_modules/semantic-ui-daterangepicker/daterangepicker.min.js'
+        './node_modules/semantic-ui-daterangepicker/daterangepicker.min.js',
+        // Highcharts
+        './node_modules/highcharts/highcharts.js',
+        './node_modules/highcharts-ng/dist/highcharts-ng.min.js'
     ], 'public/js/vendor.js');
 
     mix.task('templateCache');

@@ -16,6 +16,8 @@
     "angular-messages": "^1.5.8",
     "angular-smart-table": "^2.1.8",
     "angular-ui-router": "^0.3.1",
+    "highcharts": "^5.0.0",
+    "highcharts-ng": "0.0.13",
     "jquery": "^3.1.1",
     "moment": "^2.15.1",
     "semantic-ui": "^2.2.4",

@@ -1,6 +1,6 @@
-var expensesApp = angular.module('expensesApp', ['ngAnimate', 'ngMessages', 'ui.router', 'smart-table', 'fcsa-number']);
+var expensesApp = angular.module('expensesApp', ['ngAnimate', 'ngMessages', 'ui.router', 'smart-table', 'highcharts-ng', 'fcsa-number']);
 
-expensesApp.config(($stateProvider, $urlRouterProvider, fcsaNumberConfigProvider, SettingsProvider) => {
+expensesApp.config(($stateProvider, $urlRouterProvider, fcsaNumberConfigProvider, SettingsProvider, ChartProvider) => {
 
     $urlRouterProvider.otherwise('home');
 
@@ -12,6 +12,7 @@ expensesApp.config(($stateProvider, $urlRouterProvider, fcsaNumberConfigProvider
             controllerAs: 'home'
         });
 
+    // Number input config
     fcsaNumberConfigProvider.setDefaultOptions({
         min: 0,
         max: 9999999,
@@ -19,4 +20,6 @@ expensesApp.config(($stateProvider, $urlRouterProvider, fcsaNumberConfigProvider
         prepend: SettingsProvider.$get().getCurrencySymbol()
     });
 
+    // Highcharts config
+    ChartProvider.$get().configChartLib();
 });

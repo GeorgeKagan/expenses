@@ -1,5 +1,13 @@
 @import "variables";
 
+* {
+  font-family: Lato, 'Helvetica Neue', Arial, Helvetica, sans-serif;
+}
+
+body {
+  background: rgba(0, 0, 50, 0.01);
+}
+
 // App header
 
 .masthead.segment {

@@ -30,9 +30,9 @@
             <td ng-if="row.recurrence==='payments'">
                 <h4 class="ui header">
                     <div class="content">
-                        {{(row.amount / row.paymentsNum) | currency:currencySymbol}}
+                        {{row.amount | currency:currencySymbol}}
                         <sup class="ui mini circular gray label">{{row.currPaymentNum}}/{{row.paymentsNum}}</sup>
-                        <div class="sub header">{{row.amount | currency:currencySymbol}} total</div>
+                        <div class="sub header">{{row.totalAmount | currency:currencySymbol}} total</div>
                     </div>
                 </h4>
             </td>

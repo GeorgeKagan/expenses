@@ -43,6 +43,7 @@
 }
 
 // Table
+
 table.ui.table {
   .st-sort-ascent:after,
   .st-sort-descent:after {
@@ -55,5 +56,24 @@ table.ui.table {
   }
   .st-sort-descent:after {
     content: '\25BC';
+  }
+}
+
+// Highcharts
+
+.highcharts-container {
+  background: none !important;
+}
+
+.highcharts-tooltip > span {
+  background-color: #eee;
+  z-index: 9999 !important;
+  padding: 7px 11px;
+  border-radius: 5px;
+  box-shadow: 1px 1px 4px rgba(0, 0, 0, 0.3);
+
+  b {
+    font-weight: bold;
+    font-size: 16px;
   }
 }
