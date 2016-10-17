@@ -1,4 +1,4 @@
-angular.module('expensesApp').directive('dropdown', () => {
+angular.module('expensesApp').directive('dropdown', $timeout => {
     "use strict";
 
     return {
@@ -10,7 +10,7 @@ angular.module('expensesApp').directive('dropdown', () => {
                     <i class="dropdown icon"></i>
                     <div class="default text">{{::label}}</div>
                     <div class="menu">
-                        <div class="item" data-value="{{::value.id}}" ng-repeat="value in ::values">
+                        <div class="item" data-value="{{::value.id}}" ng-repeat="value in ::values" on-finish-render="setValue()">
                             <i class="{{::value.icon}} icon" ng-if="value.icon"></i> {{::value.label}}
                         </div>
                     </div>
@@ -21,12 +21,21 @@ angular.module('expensesApp').directive('dropdown', () => {
             model: '='
         },
         link: (scope, element) => {
+            // Init dropdown
             element.dropdown({
                 onChange: value => {
                     scope.model = value;
                     scope.$apply();
                 }
             });
+
+            // Set selected if already has a value
+            scope.setValue = () => {
+                if (!scope.model) { return; }
+                $timeout(() => element.dropdown('set selected', scope.model.toLowerCase()));
+            };
+
+            // On containing form submit success, reset the dropdown
             scope.$on('formSubmitSuccess', () => element.dropdown('clear').dropdown('set text', scope.label));
         }
     }

@@ -2,8 +2,8 @@ angular.module('expensesApp').controller('HomeCtrl', function(FilterData) {
     "use strict";
 
     this.filters = {
-        year: null,
-        month: null
+        year: moment().format('Y'),
+        month: moment().format('MMMM')
     };
     this.years = FilterData.getYears();
     this.months = FilterData.getMonths();

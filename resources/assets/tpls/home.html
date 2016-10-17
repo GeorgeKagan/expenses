@@ -18,13 +18,13 @@
         <div class="row">
             <div class="ten wide column">
                 <h3 class="ui header center aligned exp-header">
-                    Expenses for Oct, 2016
+                    Expenses for {{home.filters.month | capitalize}}, {{home.filters.year}}
                 </h3>
                 <expense-table></expense-table>
             </div>
             <div class="six wide column">
                 <h3 class="ui header center aligned">
-                    Total by type
+                    Totals by type
                 </h3>
                 <expense-chart></expense-chart>
             </div>

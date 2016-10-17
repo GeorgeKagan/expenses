@@ -22,4 +22,12 @@ angular.module('expensesApp')
         };
     })
 
+    .filter('capitalize', () => {
+        "use strict";
+        return item => {
+            if (!item) { return ''; }
+            return item.charAt(0).toUpperCase() + item.slice(1);
+        };
+    })
+
 ;
