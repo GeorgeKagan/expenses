@@ -5,8 +5,11 @@
 </div>
 
 <div class="ui vertical stripe segment">
-    <div class="ui aligned stackable grid container">
+    <div class="ui stackable grid container">
         <div class="row">
+            <div class="ui one column middle aligned grid">
+                <i class="grey large filter icon"></i>
+            </div>
             <div class="three wide column">
                 <dropdown label="'Year'" values="home.years" model="home.filters.year"
                           on-change-do="home.filterByYear" direction="'upward'"></dropdown>
@@ -20,7 +23,7 @@
         <div class="row">
             <div class="ten wide column">
                 <h3 class="ui header center aligned exp-header">
-                    Expenses for {{home.filters.month | capitalize}}, {{home.filters.year}}
+                    Expenses for {{home.filters.month | capitalize | limitTo:3}}, {{home.filters.year}}
                 </h3>
                 <expense-table></expense-table>
             </div>
