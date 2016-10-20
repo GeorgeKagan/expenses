@@ -8,10 +8,12 @@
     <div class="ui aligned stackable grid container">
         <div class="row">
             <div class="three wide column">
-                <dropdown label="'Year'" values="home.years" model="home.filters.year"></dropdown>
+                <dropdown label="'Year'" values="home.years" model="home.filters.year"
+                          on-change-do="home.filterByYear" direction="'upward'"></dropdown>
             </div>
             <div class="three wide column">
-                <dropdown label="'Month'" values="home.months" model="home.filters.month"></dropdown>
+                <dropdown label="'Month'" values="home.months" model="home.filters.month"
+                          on-change-do="home.filterByMonth" direction="'upward'"></dropdown>
             </div>
         </div>
         <div class="ui divider"></div>

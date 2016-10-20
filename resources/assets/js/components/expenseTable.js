@@ -6,7 +6,10 @@ angular.module('expensesApp').directive('expenseTable', (Settings, Expense) => {
         templateUrl: 'tables/expenseTable.html',
         scope: {},
         controller: $scope => {
-            $scope.rowCollection = Expense.getExpenses();
+            $scope.$on('filterExpenses', () => {
+                $scope.rowCollection = Expense.getExpenses();
+                $scope.amountSum = Expense.getAmountSum($scope.rowCollection);
+            });
 
             $scope.getters = {
                 date: function (value) {
@@ -16,7 +19,6 @@ angular.module('expensesApp').directive('expenseTable', (Settings, Expense) => {
             };
 
             $scope.currencySymbol = Settings.getCurrencySymbol();
-            $scope.amountSum = Expense.getAmountSum($scope.rowCollection);
         },
         link: (scope, element) => {
 

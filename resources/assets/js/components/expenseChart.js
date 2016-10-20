@@ -5,9 +5,13 @@ angular.module('expensesApp').directive('expenseChart', (Expense, Chart, Setting
 
     return {
         restrict: 'E',
-        template: `<highchart id="chart1" config="chartConfig"></highchart>`,
+        template: `<highchart config="chartConfig"></highchart>`,
         scope: {},
         controller: $scope => {
+            $scope.$on('filterExpenses', () => {
+                $scope.chartConfig.series[0].data = Chart.transformToSeries(Expense.getExpenses());
+            });
+
             $scope.chartConfig = {
                 options: {
                     chart: {
@@ -62,7 +66,7 @@ angular.module('expensesApp').directive('expenseChart', (Expense, Chart, Setting
                 series: [{
                     name: 'total',
                     colorByPoint: true,
-                    data: Chart.transformToSeries(Expense.getExpenses())
+                    data: []
                 }],
                 title: {text: null},
                 loading: false

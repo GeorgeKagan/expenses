@@ -3,6 +3,15 @@ angular.module('expensesApp').factory('FilterData', () => {
 
     let service = {};
 
+    service.filter = {
+        year: moment().format('Y'),
+        month: moment().format('MMMM').toLowerCase()
+    };
+
+    service.setYear = val => service.filter.year = val;
+    service.setMonth = val => service.filter.month = val;
+    service.getFilter = () => service.filter;
+
     /**
      * Get a list of supported years to filter by.
      * @returns {number[]}

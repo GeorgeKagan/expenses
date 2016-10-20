@@ -44,13 +44,16 @@
                 <expense-actions></expense-actions>
             </td>
         </tr>
+        <tr class="center aligned" ng-if="!rowCollection.length">
+            <td colspan="6"><small>No data</small></td>
+        </tr>
     </tbody>
     <tfoot>
         <tr class="center aligned">
             <th></th>
             <th></th>
             <th></th>
-            <th><h2 class="exp-red">{{::amountSum | currency:currencySymbol}}</h2></th>
+            <th><h2 ng-class="{'exp-red': amountSum > 0}">{{amountSum | currency:currencySymbol}}</h2></th>
             <th></th>
             <th></th>
         </tr>

@@ -1,4 +1,4 @@
-angular.module('expensesApp').directive('dropdown', $timeout => {
+angular.module('expensesApp').directive('dropdown', $filter => {
     "use strict";
 
     return {
@@ -10,7 +10,7 @@ angular.module('expensesApp').directive('dropdown', $timeout => {
                     <i class="dropdown icon"></i>
                     <div class="default text">{{::label}}</div>
                     <div class="menu">
-                        <div class="item" data-value="{{::value.id}}" ng-repeat="value in ::values" on-finish-render="setValue()">
+                        <div class="item" data-value="{{::value.id}}" ng-repeat="value in ::values" on-finish-render="setSelectedValue()">
                             <i class="{{::value.icon}} icon" ng-if="value.icon"></i> {{::value.label}}
                         </div>
                     </div>
@@ -18,21 +18,27 @@ angular.module('expensesApp').directive('dropdown', $timeout => {
         scope: {
             label: '=',
             values: '=',
-            model: '='
+            model: '=',
+            onChangeDo: '=?',
+            direction: '=?'
+        },
+        controller: $scope => {
+          $scope.direction = $scope.direction || 'downward';
         },
         link: (scope, element) => {
             // Init dropdown
             element.dropdown({
+                direction: scope.direction,
                 onChange: value => {
                     scope.model = value;
+                    scope.onChangeDo && scope.onChangeDo(value);
                     scope.$apply();
                 }
             });
 
             // Set selected if already has a value
-            scope.setValue = () => {
-                if (!scope.model) { return; }
-                $timeout(() => element.dropdown('set selected', scope.model.toLowerCase()));
+            scope.setSelectedValue = () => {
+                scope.model && element.dropdown('set text', $filter('capitalize')(scope.model));
             };
 
             // On containing form submit success, reset the dropdown
