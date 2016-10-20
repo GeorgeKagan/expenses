@@ -1,16 +1,16 @@
-<table st-table="rowCollection" class="ui striped celled blue padded table">
+<table st-safe-src="rowCollection" st-table="displayed" class="ui striped celled blue padded table">
     <thead>
         <tr class="center aligned">
             <th></th>
-            <th st-sort="date">Date</th>
-            <th st-sort="type">Type</th>
-            <th st-sort="amount">Amount</th>
+            <th st-sort="date" st-sort-default="true" st-skip-natural="true">Date</th>
+            <th st-sort="type" st-skip-natural="true">Type</th>
+            <th st-sort="amount" st-skip-natural="true">Amount</th>
             <th>Description</th>
             <th></th>
         </tr>
     </thead>
     <tbody>
-        <tr class="center aligned" ng-repeat="row in rowCollection">
+        <tr class="center aligned" ng-repeat="row in displayed">
             <td class="left aligned collapsing">
                 <div ng-bind-html="row.recurrence | recurrence2icon"></div>
             </td>
@@ -44,7 +44,7 @@
                 <expense-actions></expense-actions>
             </td>
         </tr>
-        <tr class="center aligned" ng-if="!rowCollection.length">
+        <tr class="center aligned" ng-if="!displayed.length">
             <td colspan="6"><small>No data</small></td>
         </tr>
     </tbody>

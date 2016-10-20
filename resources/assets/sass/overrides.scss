@@ -45,6 +45,9 @@
 // Table
 
 table.ui.table {
+  th[st-sort] {
+    cursor: pointer;
+  }
   .st-sort-ascent:after,
   .st-sort-descent:after {
     margin: 0 5px;

@@ -6,6 +6,9 @@ angular.module('expensesApp').directive('expenseTable', (Settings, Expense) => {
         templateUrl: 'tables/expenseTable.html',
         scope: {},
         controller: $scope => {
+            $scope.rowCollection = [];
+            $scope.displayed = [];
+
             $scope.$on('filterExpenses', () => {
                 $scope.rowCollection = Expense.getExpenses();
                 $scope.amountSum = Expense.getAmountSum($scope.rowCollection);
