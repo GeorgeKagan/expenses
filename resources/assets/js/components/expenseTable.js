@@ -11,13 +11,6 @@ angular.module('expensesApp').directive('expenseTable', (Settings, Expense) => {
                 $scope.amountSum = Expense.getAmountSum($scope.rowCollection);
             });
 
-            $scope.getters = {
-                date: function (value) {
-                    //this will sort by the length of the first name string
-                    return value.date.length;
-                }
-            };
-
             $scope.currencySymbol = Settings.getCurrencySymbol();
         },
         link: (scope, element) => {
