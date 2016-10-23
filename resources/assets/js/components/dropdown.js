@@ -28,6 +28,9 @@ angular.module('expensesApp').directive('dropdown', $filter => {
         link: (scope, element) => {
             // Init dropdown
             element.dropdown({
+                on: 'hover',
+                allowReselection: true,
+                selectOnKeydown: false,
                 direction: scope.direction,
                 onChange: value => {
                     scope.model = value;
