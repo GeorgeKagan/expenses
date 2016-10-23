@@ -5,7 +5,7 @@ angular.module('expensesApp').directive('dropdown', $filter => {
         restrict: 'E',
         replace: true,
         template: `
-                <div class="ui selection dropdown">
+                <div class="ui selection dropdown" ng-class="{'disabled': disabled}">
                     <input type="hidden" name="{{::model}}" ng-model="model" required>
                     <i class="dropdown icon"></i>
                     <div class="default text">{{::label}}</div>
@@ -20,7 +20,8 @@ angular.module('expensesApp').directive('dropdown', $filter => {
             values: '=',
             model: '=',
             onChangeDo: '=?',
-            direction: '=?'
+            direction: '=?',
+            disabled: '=?'
         },
         controller: $scope => {
           $scope.direction = $scope.direction || 'downward';
@@ -28,7 +29,6 @@ angular.module('expensesApp').directive('dropdown', $filter => {
         link: (scope, element) => {
             // Init dropdown
             element.dropdown({
-                on: 'hover',
                 allowReselection: true,
                 selectOnKeydown: false,
                 direction: scope.direction,

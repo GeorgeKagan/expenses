@@ -16,14 +16,19 @@
             </div>
             <div class="three wide column">
                 <dropdown label="'Month'" values="home.months" model="home.filters.month"
-                          on-change-do="home.filterByMonth"></dropdown>
+                          on-change-do="home.filterByMonth" disabled="home.filters.year==='all'"></dropdown>
             </div>
         </div>
         <div class="ui divider"></div>
         <div class="row">
             <div class="ten wide column">
                 <h3 class="ui header center aligned exp-header">
-                    Expenses for {{home.filters.month | capitalize | limitTo:3}}, {{home.filters.year}}
+                    Expenses for
+                    <span ng-if="home.filters.year==='all'">all years</span>
+                    <span ng-if="home.filters.year!=='all' && home.filters.month==='all'">{{home.filters.year}}</span>
+                    <span ng-if="home.filters.year!=='all' && home.filters.month!=='all'">
+                        {{home.filters.month | capitalize | limitTo:3}}, {{home.filters.year}}
+                    </span>
                 </h3>
                 <expense-table></expense-table>
             </div>

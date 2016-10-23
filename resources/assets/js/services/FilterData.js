@@ -18,6 +18,7 @@ angular.module('expensesApp').factory('FilterData', () => {
      */
     service.getYears = () => {
         return [
+            {id: 'all', label: 'All Years'},
             {id: 2016, label: 2016},
             {id: 2015, label: 2015},
             {id: 2014, label: 2014},
@@ -31,6 +32,7 @@ angular.module('expensesApp').factory('FilterData', () => {
      */
     service.getMonths = () => {
         return [
+            {id: 'all', label: 'All Months'},
             {id: 'december', label: 'December'},
             {id: 'november', label: 'November'},
             {id: 'october', label: 'October'},
