@@ -7,35 +7,24 @@
 <div class="ui vertical stripe segment">
     <div class="ui stackable grid container">
         <div class="row">
-            <div class="ui one column middle aligned grid">
-                <i class="grey large filter icon"></i>
-            </div>
             <div class="three wide column">
-                <dropdown label="'Year'" values="home.years" model="home.filters.year"
-                          on-change-do="home.filterByYear"></dropdown>
+                <dropdown label="'Year'" values="home.years" model="home.filters.year"></dropdown>
             </div>
             <div class="three wide column">
                 <dropdown label="'Month'" values="home.months" model="home.filters.month"
-                          on-change-do="home.filterByMonth" disabled="home.filters.year==='all'"></dropdown>
+                          disabled="home.filters.year==='all'"></dropdown>
+            </div>
+            <div class="one wide column">
+                <button class="ui icon button blue" ng-click="home.filterData()">
+                    <i class="filter icon"></i>
+                </button>
             </div>
         </div>
-        <div class="ui divider"></div>
         <div class="row">
             <div class="ten wide column">
-                <h3 class="ui header center aligned exp-header">
-                    Expenses for
-                    <span ng-if="home.filters.year==='all'">all years</span>
-                    <span ng-if="home.filters.year!=='all' && home.filters.month==='all'">{{home.filters.year}}</span>
-                    <span ng-if="home.filters.year!=='all' && home.filters.month!=='all'">
-                        {{home.filters.month | capitalize | limitTo:3}}, {{home.filters.year}}
-                    </span>
-                </h3>
                 <expense-table></expense-table>
             </div>
             <div class="six wide column">
-                <h3 class="ui header center aligned">
-                    Totals by type
-                </h3>
                 <expense-chart></expense-chart>
             </div>
         </div>

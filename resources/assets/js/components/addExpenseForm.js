@@ -20,7 +20,8 @@ angular.module('expensesApp').directive('addExpenseForm', ($rootScope, $timeout,
                 Expense.addNewExpense($scope.form);
                 $timeout(() => {
                     $scope.form = Expense.initFormState();
-                    $rootScope.$broadcast('formSubmitSuccess');
+                    $scope.$emit('formSubmitSuccess');
+                    $scope.$broadcast('formSubmitSuccess');
                 }, 1000);
             };
         },

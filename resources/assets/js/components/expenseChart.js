@@ -8,8 +8,8 @@ angular.module('expensesApp').directive('expenseChart', (Expense, Chart, Setting
         template: `<highchart config="chartConfig"></highchart>`,
         scope: {},
         controller: $scope => {
-            $scope.$on('filterExpenses', () => {
-                $scope.chartConfig.series[0].data = Chart.transformToSeries(Expense.getExpenses());
+            $scope.$watch('$root.expenses', () => {
+                $scope.chartConfig.series[0].data = Chart.transformToSeries($scope.$root.expenses);
             });
 
             $scope.chartConfig = {

@@ -1,18 +1,14 @@
-angular.module('expensesApp').controller('HomeCtrl', function($rootScope, $timeout, FilterData) {
+angular.module('expensesApp').controller('HomeCtrl', function($rootScope, $timeout, FilterData, Expense) {
     "use strict";
 
     this.filters = FilterData.getFilter();
     this.years = FilterData.getYears();
     this.months = FilterData.getMonths();
 
-    this.filterByYear = val => {
-        FilterData.setYear(val);
-        $rootScope.$broadcast('filterExpenses');
-    };
-    this.filterByMonth = val => {
-        FilterData.setMonth(val);
-        $rootScope.$broadcast('filterExpenses');
+    this.filterData = () => {
+        FilterData.setFilter(this.filters);
+        $rootScope.expenses = Expense.getExpenses();
     };
 
-    $timeout(() => $rootScope.$broadcast('filterExpenses'));
+    this.filterData();
 });

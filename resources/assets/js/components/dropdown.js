@@ -1,4 +1,4 @@
-angular.module('expensesApp').directive('dropdown', $filter => {
+angular.module('expensesApp').directive('dropdown', $timeout => {
     "use strict";
 
     return {
@@ -41,7 +41,7 @@ angular.module('expensesApp').directive('dropdown', $filter => {
 
             // Set selected if already has a value
             scope.setSelectedValue = () => {
-                scope.model && element.dropdown('set text', $filter('capitalize')(scope.model));
+                $timeout(() => scope.model && element.dropdown('set selected', scope.model));
             };
 
             // On containing form submit success, reset the dropdown
