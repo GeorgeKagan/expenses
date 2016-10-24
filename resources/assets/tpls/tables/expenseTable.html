@@ -15,7 +15,7 @@
                 <div ng-bind-html="row.recurrence | recurrence2icon"></div>
             </td>
             <td>
-                <small>{{row.date | date}}</small>
+                <small>{{row.recurrence==='monthly' ? 'N/A' : row.date | date}}</small>
             </td>
             <td ng-bind-html="row.type | type2icon"></td>
 
