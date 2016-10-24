@@ -19,6 +19,7 @@ angular.module('expensesApp').controller('HomeCtrl', function($rootScope, $timeo
             $timeout(() => this.isJustLoaded = false, CONF.NG_ANIMATE_DEFAULT);
         });
     };
-
     this.filterData();
+
+    $rootScope.$on('formSubmitSuccess', this.filterData)
 });

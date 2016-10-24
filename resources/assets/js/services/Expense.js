@@ -60,9 +60,14 @@ angular.module('expensesApp').factory('Expense', ($q, $timeout, Settings, Filter
 
         let filter = FilterData.getFilter();
 
-        expenses = expenses.filter(x => x.year + '' === filter.year + '' && x.month === filter.month);
+        if (filter.year !== 'all' && filter.month === 'all') {
+            expenses = expenses.filter(x => x.year + '' === filter.year + '');
+        }
+        else if (filter.year !== 'all') {
+            expenses = expenses.filter(x => x.year + '' === filter.year + '' && x.month === filter.month);
+        }
 
-        $timeout(() => q.resolve(expenses), 1000);
+        $timeout(() => q.resolve(expenses), 500);
 
         return q.promise;
     };
