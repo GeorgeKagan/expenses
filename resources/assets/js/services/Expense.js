@@ -1,4 +1,4 @@
-angular.module('expensesApp').factory('Expense', (Settings, FilterData) => {
+angular.module('expensesApp').factory('Expense', ($q, $timeout, Settings, FilterData) => {
     "use strict";
 
     const TYPES = [
@@ -39,9 +39,10 @@ angular.module('expensesApp').factory('Expense', (Settings, FilterData) => {
 
     /**
      * Returns all expenses.
-     * @returns {*[]}
      */
     service.getExpenses = () => {
+        let q = $q.defer();
+
         let expenses = [
             {year: 2016, month: 'october', recurrence: 'monthly', date: moment('2016-10-09').format(Settings.getDateFormat()), type: 'car', typeLabel: 'Car', amount: 2040, description: 'Cupra - loan'},
             {year: 2016, month: 'october',recurrence: 'monthly', date: moment('2016-10-09').format(Settings.getDateFormat()), type: 'car', typeLabel: 'Car', amount: 483, description: 'Cupra insurance - Peltours'},
@@ -59,7 +60,11 @@ angular.module('expensesApp').factory('Expense', (Settings, FilterData) => {
 
         let filter = FilterData.getFilter();
 
-        return expenses.filter(x => x.year + '' === filter.year + '' && x.month === filter.month);
+        expenses = expenses.filter(x => x.year + '' === filter.year + '' && x.month === filter.month);
+
+        $timeout(() => q.resolve(expenses), 1000);
+
+        return q.promise;
     };
 
     /**

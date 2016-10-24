@@ -18,8 +18,7 @@ angular.module('expensesApp').directive('addExpenseModal', $timeout => {
                     <add-expense-form expense-form="expenseForm" add-expense="callAddExpense" is-adding="isAdding"></add-expense-form>
                 </div>
                 <div class="actions">
-                    <button class="ui positive large button" ng-disabled="expenseForm.$invalid || isAdding!==null" 
-                            ng-class="{'loading': isAdding===true}">
+                    <button class="ui positive large button" ng-disabled="expenseForm.$invalid || isAdding!==null">
                         <i class="add circle icon"></i>
                         Add Expense
                     </button>
