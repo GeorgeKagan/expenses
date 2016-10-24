@@ -1,4 +1,4 @@
-angular.module('expensesApp').controller('HomeCtrl', function($rootScope, $timeout, FilterData, Expense) {
+angular.module('expensesApp').controller('HomeCtrl', function($rootScope, $timeout, CONF, FilterData, Expense) {
     "use strict";
 
     $rootScope.expenses = [];
@@ -16,7 +16,7 @@ angular.module('expensesApp').controller('HomeCtrl', function($rootScope, $timeo
         Expense.getExpenses().then(data => {
             $rootScope.expenses = data;
             this.isFiltering = false;
-            this.isJustLoaded = false;
+            $timeout(() => this.isJustLoaded = false, CONF.NG_ANIMATE_DEFAULT);
         });
     };
 

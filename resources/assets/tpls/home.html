@@ -15,21 +15,22 @@
                           disabled="home.filters.year==='all'"></dropdown>
             </div>
             <div class="one wide column">
-                <button class="ui icon button blue" ng-click="home.filterData()" ng-disabled="home.isFiltering">
+                <button class="ui icon button blue" ng-click="home.filterData()"
+                        ng-disabled="!home.isJustLoaded && home.isFiltering">
                     <i class="filter icon"></i>
                 </button>
             </div>
         </div>
         <div class="row exp-main">
-            <div class="ten wide column" ng-show="$root.expenses.length">
+            <div class="ten wide column" ng-class="{'nga-default nga-fade': home.isJustLoaded}" ng-show="$root.expenses.length">
                 <expense-table></expense-table>
             </div>
-            <div class="six wide column" ng-show="$root.expenses.length">
+            <div class="six wide column" ng-class="{'nga-default nga-fade': home.isJustLoaded}" ng-show="$root.expenses.length">
                 <expense-chart></expense-chart>
             </div>
             <div class="ui sixteen wide column middle aligned grid"
                  ng-show="!home.isJustLoaded && !$root.expenses.length">
-                <h3 class="ui center aligned grid">No Data</h3>
+                <div class="ui disabled header centered">No Data</div>
             </div>
             <div class="ui dimmer inverted" ng-class="{'active': home.isFiltering}">
                 <div class="ui big loader"></div>
