@@ -20,15 +20,19 @@
                 </button>
             </div>
         </div>
-        <div class="row">
-            <div class="ten wide column">
+        <div class="row exp-main">
+            <div class="ten wide column" ng-show="$root.expenses.length">
                 <expense-table></expense-table>
             </div>
-            <div class="six wide column">
+            <div class="six wide column" ng-show="$root.expenses.length">
                 <expense-chart></expense-chart>
             </div>
+            <div class="ui sixteen wide column middle aligned grid"
+                 ng-show="!home.isJustLoaded && !$root.expenses.length">
+                <h3 class="ui center aligned grid">No Data</h3>
+            </div>
             <div class="ui dimmer inverted" ng-class="{'active': home.isFiltering}">
-                <div class="ui text big loader">Filtering...</div>
+                <div class="ui big loader"></div>
             </div>
         </div>
     </div>

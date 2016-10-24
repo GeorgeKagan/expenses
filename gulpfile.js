@@ -42,7 +42,6 @@ elixir(mix => {
         './node_modules/semantic-ui-daterangepicker/daterangepicker.min.js',
         // Highcharts
         './node_modules/highcharts/highcharts.js',
-        './node_modules/highcharts/modules/no-data-to-display.js',
         './node_modules/highcharts-ng/dist/highcharts-ng.min.js'
     ], 'public/js/vendor.js');
 

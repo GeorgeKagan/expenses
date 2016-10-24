@@ -4,6 +4,7 @@ angular.module('expensesApp').controller('HomeCtrl', function($rootScope, $timeo
     $rootScope.expenses = [];
 
     this.isFiltering = false;
+    this.isJustLoaded = true;
     this.filters = FilterData.getFilter();
     this.years = FilterData.getYears();
     this.months = FilterData.getMonths();
@@ -15,6 +16,7 @@ angular.module('expensesApp').controller('HomeCtrl', function($rootScope, $timeo
         Expense.getExpenses().then(data => {
             $rootScope.expenses = data;
             this.isFiltering = false;
+            this.isJustLoaded = false;
         });
     };
 

@@ -4,10 +4,6 @@
   font-family: Lato, 'Helvetica Neue', Arial, Helvetica, sans-serif;
 }
 
-body {
-  background: rgba(0, 0, 50, 0.01);
-}
-
 // App header
 
 .masthead.segment {
@@ -19,6 +15,12 @@ body {
   margin-top: 3em;
   margin-bottom: 0;
   line-height: 1.2em;
+}
+
+// App Main
+
+.exp-main {
+  min-height: 200px;
 }
 
 // Scrollbars
