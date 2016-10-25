@@ -1,15 +1,33 @@
-angular.module('expensesApp').factory('FilterData', () => {
+angular.module('expensesApp').factory('FilterData', Utils => {
     "use strict";
 
-    let service = {};
-
-    service.filter = {
-        year: moment().format('Y'),
-        month: moment().format('MMMM').toLowerCase()
+    let service = {
+        onLoadFilter: Utils.getCurrentMonthYear(),
+        filter: Utils.getCurrentMonthYear(),
     };
 
     service.getFilter = () => service.filter;
     service.setFilter = filter => service.filter = filter;
+
+    /**
+     * Reset filter and return it.
+     * @returns {{year, month}|*}
+     */
+    service.resetFilter = () => {
+        service.filter = Utils.getCurrentMonthYear();
+
+        return service.filter;
+    };
+
+    /**
+     * Check if filter state doesn't equal to current month/year.
+     * Returns true if filter was really changed.
+     * @returns {boolean}
+     */
+    service.isFilterChanged = () => {
+        return service.onLoadFilter.year + '' !== service.filter.year + ''
+            || service.onLoadFilter.month !== service.filter.month;
+    };
 
     /**
      * Get a list of supported years to filter by.

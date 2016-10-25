@@ -20,6 +20,9 @@
                     <i class="filter icon"></i>
                 </button>
             </div>
+            <div class="ui one wide column middle aligned grid" ng-if="!home.isThisMonth && !home.isFiltering">
+                <a href="" ng-click="home.filterReset()">Reset</a>
+            </div>
         </div>
         <div class="row exp-main">
             <div class="ten wide column" ng-class="{'nga-default nga-fade': home.isJustLoaded}" ng-show="$root.expenses.length">
