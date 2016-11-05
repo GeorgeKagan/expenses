@@ -27,6 +27,7 @@ angular.module('expensesApp').directive('dropdown', $timeout => {
           $scope.direction = $scope.direction || 'downward';
         },
         link: (scope, element) => {
+            //todo: update dd val/text on filter reset
             // Init dropdown
             element.dropdown({
                 allowReselection: true,
