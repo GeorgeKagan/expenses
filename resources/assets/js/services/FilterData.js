@@ -7,7 +7,8 @@ angular.module('expensesApp').factory('FilterData', Utils => {
     };
 
     service.getFilter = () => service.filter;
-    service.setFilter = filter => service.filter = filter;
+    service.setFilter = filter => service.filter = angular.extend({}, filter);
+    service.isCurrentMonth = () => Utils.isCurrentMonth(service.getFilter().month);
 
     /**
      * Reset filter and return it.

@@ -14,5 +14,14 @@ angular.module('expensesApp').factory('Utils', () => {
         };
     };
 
+    /**
+     * Check if passed month is the current month of current year.
+     * @param month
+     * @returns {boolean}
+     */
+    service.isCurrentMonth = month => {
+        return moment().format('MMMM').toLowerCase() === month;
+    };
+
     return service;
 });

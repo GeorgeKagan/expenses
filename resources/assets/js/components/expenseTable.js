@@ -1,4 +1,4 @@
-angular.module('expensesApp').directive('expenseTable', (Settings, Expense) => {
+angular.module('expensesApp').directive('expenseTable', (Settings, Expense, FilterData) => {
     "use strict";
 
     return {
@@ -7,12 +7,12 @@ angular.module('expensesApp').directive('expenseTable', (Settings, Expense) => {
         scope: {},
         controller: $scope => {
             $scope.displayed = [];
+            $scope.isCurrentMonth = FilterData.isCurrentMonth;
+            $scope.currencySymbol = Settings.getCurrencySymbol();
 
             $scope.$watch('$root.expenses', () => {
                 $scope.amountSum = Expense.getAmountSum($scope.$root.expenses);
             });
-
-            $scope.currencySymbol = Settings.getCurrencySymbol();
         },
         link: (scope, element) => {
 

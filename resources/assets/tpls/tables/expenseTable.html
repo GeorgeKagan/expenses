@@ -47,12 +47,21 @@
     </tbody>
     <tfoot>
         <tr class="center aligned">
-            <th></th>
-            <th></th>
-            <th></th>
-            <th><h2 ng-class="{'exp-red': amountSum > 0}">{{amountSum | currency:currencySymbol}}</h2></th>
-            <th></th>
-            <th></th>
+            <th colspan="3"><em>Total</em></th>
+            <th><h3 ng-class="{'exp-red': amountSum > 0}">{{amountSum | currency:currencySymbol}}</h3></th>
+            <th colspan="2"></th>
+        </tr>
+        <tr class="center aligned" ng-if="isCurrentMonth()">
+            <th colspan="3">
+                <em>
+                    Estimated total &nbsp;
+                    <span data-tooltip="Total + (est. mo. groceries & fuel expenses) - (actual expenses)" data-inverted>
+                        <i class="help circle grey icon"></i>
+                    </span>
+                </em>
+            </th>
+            <th><h3>{{amountSum * 2 | currency:currencySymbol}}</h3></th>
+            <th colspan="2"></th>
         </tr>
     </tfoot>
 </table>
