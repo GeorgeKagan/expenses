@@ -4,8 +4,8 @@
     </div>
 </div>
 
-<div class="ui vertical stripe segment">
-    <div class="ui stackable grid container">
+<div class="ui vertical segment exp-filters">
+    <div class="ui stackable centered grid container">
         <div class="row">
             <div class="three wide column">
                 <dropdown label="'Year'" values="home.years" model="home.filters.year"></dropdown>
@@ -20,10 +20,15 @@
                     <i class="filter icon"></i>
                 </button>
             </div>
-            <div class="ui one wide column middle aligned grid" ng-if="!home.isThisMonth && !home.isFiltering">
-                <a href="" ng-click="home.filterReset()">Reset</a>
+            <div class="ui one wide column middle aligned grid">
+                <a href="" ng-click="home.filterReset()" ng-if="!home.isThisMonth && !home.isFiltering">Reset</a>
             </div>
         </div>
+    </div>
+</div>
+
+<div class="ui vertical segment">
+    <div class="ui stackable grid container">
         <div class="row exp-main">
             <div class="ten wide column" ng-class="{'nga-default nga-fade': home.isJustLoaded}" ng-show="$root.expenses.length">
                 <expense-table></expense-table>
