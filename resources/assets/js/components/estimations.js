@@ -11,30 +11,26 @@ angular.module('expensesApp').directive('estimations', Settings => {
                         <i class="help circle grey icon"></i>
                     </span>
                 </div>
-                <!-- Food -->
-                <div class="item" ng-if="1">
-                    <strong data-tooltip="Set est. monthly food expenditure">
-                        <button class="tiny ui basic green button"><i class="shopping basket icon"></i> Set</button>
-                    </strong>
-                </div>
-                <div class="item" ng-if="0">
-                    <i class="shopping basket icon"></i>
-                    <div class="content">
-                        <strong data-tooltip="Food">{{1700 | currency:currencySymbol}}</strong>
+                
+                <div class="item" ng-repeat="est in ::estimations">
+                    <div ng-if="est.isSet">
+                        <strong data-tooltip="{{::est.tooltip}}">
+                            <button class="tiny ui basic green button"><i class="{{::est.icon}} icon"></i> Set</button>
+                        </strong>
                     </div>
-                </div>
-                <!-- Fuel -->
-                <!-- @todo: build food & fuel w/ ng-repeat -->
-                <div class="item">
-                    <i class="road icon"></i>
-                    <div class="content" data-tooltip="Fuel">
-                        <strong>{{1300 | currency:currencySymbol}}</strong>
+                    <div ng-if="!est.isSet" data-tooltip="{{::est.tooltipSet}}">
+                        <i class="{{::est.icon}} icon"></i>
+                        <strong>{{::est.estAmount | currency:currencySymbol}}</strong>
                     </div>
                 </div>
             </div>`,
         scope: {},
         controller: $scope => {
             $scope.currencySymbol = Settings.getCurrencySymbol();
+            $scope.estimations = [
+                {isSet: 1, estAmount: 1700, icon: 'shopping basket', tooltip: 'Set est. monthly food expenditure', tooltipSet: 'Food'},
+                {isSet: 0, estAmount: 1300, icon: 'road', tooltip: 'Set est. monthly fuel expenditure', tooltipSet: 'Fuel'}
+            ];
         },
         link: (scope, element) => {
 
