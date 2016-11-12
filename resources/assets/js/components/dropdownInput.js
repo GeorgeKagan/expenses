@@ -11,7 +11,7 @@ angular.module('expensesApp').directive('dropdownInput', $timeout => {
                 <span class="text">Set</span>
                 <div class="menu">
                     <div class="header">
-                        Set groceries expenditure
+                        Set food expenditure
                     </div>
                     <div class="ui input">
                         <input type="text" name="expenditure" placeholder="Set expenditure">

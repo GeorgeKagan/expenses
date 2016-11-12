@@ -2,7 +2,7 @@ angular.module('expensesApp').factory('Expense', ($q, $timeout, Settings, Filter
     "use strict";
 
     const TYPES = [
-        {id: 'groceries', label: 'Groceries', icon: 'shopping basket'},
+        {id: 'food', label: 'Food', icon: 'shopping basket'},
         {id: 'fuel', label: 'Fuel', icon: 'road'},
         {id: 'recreation', label: 'Recreation', icon: 'coffee'},
         {id: 'cigarettes', label: 'Cigarettes', icon: 'fire'},
@@ -50,7 +50,7 @@ angular.module('expensesApp').factory('Expense', ($q, $timeout, Settings, Filter
             {year: 2016, month: 'november',recurrence: 'monthly', date: moment('2016-10-09').format(Settings.getDateFormat()), type: 'utilities', typeLabel: 'Utilities', amount: 70, description: 'Internet'},
             {year: 2016, month: 'november',recurrence: 'payments', date: moment('2016-10-11').format(Settings.getDateFormat()), type: 'home', typeLabel: 'Home',amount: 625, totalAmount: 1250, paymentsNum: '2', currPaymentNum: '1', description: 'Air purifier'},
             {year: 2016, month: 'november',recurrence: 'once', date: moment('2016-10-09').format(Settings.getDateFormat()), type: 'fuel', typeLabel: 'Fuel', amount: 334.56, description: ''},
-            {year: 2016, month: 'november',recurrence: 'once', date: moment('2016-10-10').format(Settings.getDateFormat()), type: 'groceries', typeLabel: 'Groceries', amount: 653, description: ''},
+            {year: 2016, month: 'november',recurrence: 'once', date: moment('2016-10-10').format(Settings.getDateFormat()), type: 'food', typeLabel: 'Food', amount: 653, description: ''},
             {year: 2016, month: 'november',recurrence: 'once', date: moment('2016-10-14').format(Settings.getDateFormat()), type: 'clothes', typeLabel: 'Clothes',amount: 433, description: 'jeans and t-shirts'},
             {year: 2016, month: 'november',recurrence: 'once', date: moment('2016-10-14').format(Settings.getDateFormat()), type: 'clothes', typeLabel: 'Clothes',amount: 199, description: 'shoes'},
             {year: 2016, month: 'november',recurrence: 'once', date: moment('2016-10-15').format(Settings.getDateFormat()), type: 'cigarettes', typeLabel: 'Cigarettes',amount: 69, description: ''},
