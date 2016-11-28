@@ -1,4 +1,5 @@
-<table st-safe-src="$root.expenses" st-table="displayed" class="ui striped celled blue padded compact table">
+<table class="ui striped celled blue padded table"
+       st-safe-src="$root.expenses" st-table="displayed" ng-class="{'compact': !$root.isReadOnlyMode()}">
     <thead>
         <tr class="center aligned">
             <th></th>
@@ -6,7 +7,7 @@
             <th st-sort="type" st-skip-natural="true">Type</th>
             <th st-sort="amount" st-skip-natural="true">Amount</th>
             <th>Description</th>
-            <th></th>
+            <th ng-if="!$root.isReadOnlyMode()"></th>
         </tr>
     </thead>
     <tbody>
@@ -40,7 +41,7 @@
             <td>
                 <small>{{::row.description}}</small>
             </td>
-            <td>
+            <td ng-if="!$root.isReadOnlyMode()">
                 <expense-actions></expense-actions>
             </td>
         </tr>

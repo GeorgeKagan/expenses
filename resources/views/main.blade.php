@@ -16,7 +16,7 @@
             }
         </script>
     </head>
-    <body>
+    <body ng-controller="MainCtrl">
         <div class="pusher" ui-view></div>
     </body>
 </html>

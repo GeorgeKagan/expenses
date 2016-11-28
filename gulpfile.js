@@ -49,6 +49,7 @@ elixir(mix => {
 });
 
 gulp.task('templateCache', () => {
+    "use strict";
     let path = './resources/assets/tpls/**/*.html';
     let cacheTemplates = () => {
         gulp.src(path)

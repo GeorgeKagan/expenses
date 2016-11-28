@@ -6,7 +6,7 @@ angular.module('expensesApp').directive('estimations', Settings => {
         template: `
             <div class="ui relaxed horizontal list">
                 <div class="item">
-                    Estimations &nbsp;
+                    <strong>Estimations</strong> &nbsp;
                     <span data-tooltip="Helps to project final expenditure at end of month">
                         <i class="help circle grey icon"></i>
                     </span>
