@@ -2,9 +2,15 @@ let expensesApp = angular.module('expensesApp', ['ngAnimate', 'ngMessages', 'ui.
 
 expensesApp.config(($stateProvider, $urlRouterProvider, fcsaNumberConfigProvider, SettingsProvider, ChartProvider) => {
 
-    $urlRouterProvider.otherwise('home');
+    $urlRouterProvider.otherwise('login');
 
     $stateProvider
+        .state('login', {
+            url: '/login',
+            templateUrl: 'login.html',
+            controller: 'LoginCtrl',
+            controllerAs: 'login'
+        })
         .state('home', {
             url: '/home',
             templateUrl: 'home.html',
