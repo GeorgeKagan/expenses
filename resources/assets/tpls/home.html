@@ -1,4 +1,11 @@
 <div class="ui inverted masthead center aligned segment">
+    <div class="ui container">
+        <div class="ui large secondary inverted pointing menu">
+            <div class="right item">
+                <a href="/logout" class="ui inverted button">Log out</a>
+            </div>
+        </div>
+    </div>
     <div class="ui text container">
         <add-expense-modal ng-if="!$root.isReadOnlyMode()"></add-expense-modal>
         <estimations></estimations>
