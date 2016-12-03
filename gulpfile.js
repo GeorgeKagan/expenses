@@ -31,6 +31,7 @@ elixir(mix => {
     mix.scripts([
         './node_modules/jquery/dist/jquery.js',
         './node_modules/angular/angular.js',
+        './node_modules/angular-cookies/angular-cookies.js',
         './node_modules/angular-animate/angular-animate.min.js',
         './node_modules/angular-messages/angular-messages.min.js',
         './node_modules/angular-ui-router/release/angular-ui-router.min.js',
