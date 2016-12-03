@@ -11,9 +11,7 @@
 |
 */
 
-Route::get('/', function () {
-    return view('main');
-});
+Route::get('/', 'HomeController@index');
 
 // Redirects to G+ auth screen
 Route::post('/login', 'Auth\LoginController@login');
