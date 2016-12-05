@@ -24,10 +24,13 @@ expensesApp.config(($stateProvider, $urlRouterProvider, RestangularProvider, fcs
             templateUrl: 'home.html',
             controller: 'HomeCtrl',
             controllerAs: 'home'
-        });
+        })
+    ;
 
     // Restangular config
-    RestangularProvider.setBaseUrl('/api');
+    RestangularProvider
+        .setBaseUrl('/api')
+        .setDefaultHttpFields({cache: true});
 
     // Number input config
     fcsaNumberConfigProvider.setDefaultOptions({
