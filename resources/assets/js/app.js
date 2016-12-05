@@ -1,13 +1,17 @@
-let expensesApp = angular.module('expensesApp', ['ngCookies', 'ngAnimate', 'ngMessages', 'ui.router', 'smart-table', 'highcharts-ng', 'fcsa-number']);
+let expensesApp = angular.module('expensesApp', [
+    'restangular', 'ngCookies', 'ngAnimate', 'ngMessages', 'ui.router', 'smart-table', 'highcharts-ng', 'fcsa-number'
+]);
 
-expensesApp.config(($stateProvider, $urlRouterProvider, fcsaNumberConfigProvider, CONF, SettingsProvider, ChartProvider) => {
+expensesApp.config(($stateProvider, $urlRouterProvider, RestangularProvider, fcsaNumberConfigProvider, CONF, SettingsProvider, ChartProvider) => {
 
     // Inject $cookies
     let $cookies = null;
     angular.injector(['ngCookies']).invoke(['$cookies', _$cookies_ => $cookies = _$cookies_]);
 
+    // Set default route according to auth state
     $urlRouterProvider.otherwise($cookies.get(CONF.AUTH_FLAG_COOKIE) ? 'home' : 'login');
 
+    // Define states
     $stateProvider
         .state('login', {
             url: '/login',
@@ -21,6 +25,9 @@ expensesApp.config(($stateProvider, $urlRouterProvider, fcsaNumberConfigProvider
             controller: 'HomeCtrl',
             controllerAs: 'home'
         });
+
+    // Restangular config
+    RestangularProvider.setBaseUrl('/api');
 
     // Number input config
     fcsaNumberConfigProvider.setDefaultOptions({

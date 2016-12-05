@@ -31,6 +31,7 @@ elixir(mix => {
     mix.scripts([
         './node_modules/jquery/dist/jquery.js',
         './node_modules/angular/angular.js',
+        './node_modules/restangular/dist/restangular.min.js',
         './node_modules/angular-cookies/angular-cookies.js',
         './node_modules/angular-animate/angular-animate.min.js',
         './node_modules/angular-messages/angular-messages.min.js',
@@ -38,6 +39,7 @@ elixir(mix => {
         './node_modules/angular-fcsa-number/src/fcsaNumber.min.js',
         './node_modules/angular-smart-table/dist/smart-table.min.js',
         './node_modules/moment/min/moment.min.js',
+        './node_modules/lodash/lodash.min.js',
         // Semantic UI
         './node_modules/semantic-ui/dist/semantic.min.js',
         './node_modules/semantic-ui-daterangepicker/daterangepicker.min.js',
