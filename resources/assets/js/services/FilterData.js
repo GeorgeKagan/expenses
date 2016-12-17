@@ -51,18 +51,18 @@ angular.module('expensesApp').factory('FilterData', Utils => {
     service.getMonths = () => {
         return [
             {id: 'all', label: 'All Months'},
-            {id: 'december', label: 'December'},
-            {id: 'november', label: 'November'},
-            {id: 'october', label: 'October'},
-            {id: 'september', label: 'September'},
-            {id: 'august', label: 'August'},
-            {id: 'july', label: 'July'},
-            {id: 'june', label: 'June'},
+            {id: 'dec', label: 'December'},
+            {id: 'nov', label: 'November'},
+            {id: 'oct', label: 'October'},
+            {id: 'sep', label: 'September'},
+            {id: 'aug', label: 'August'},
+            {id: 'jul', label: 'July'},
+            {id: 'jun', label: 'June'},
             {id: 'may', label: 'May'},
-            {id: 'april', label: 'April'},
-            {id: 'march', label: 'March'},
-            {id: 'february', label: 'February'},
-            {id: 'january', label: 'January'}
+            {id: 'apr', label: 'April'},
+            {id: 'mar', label: 'March'},
+            {id: 'feb', label: 'February'},
+            {id: 'jan', label: 'January'}
         ];
     };
 

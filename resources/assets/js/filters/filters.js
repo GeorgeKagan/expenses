@@ -14,7 +14,14 @@ angular.module('expensesApp')
     .filter('type2icon', ($sce, Expense) => {
         "use strict";
         return item => {
-            let type = Expense.getTypes().find(val => val.id === item);
+            let type;
+            item = item.toLowerCase();
+            type = Expense.getTypes().find(val => val.id === item);
+
+            if (!type) {
+                console.warn(`Couldn't find "${item}" type in the predefined types`);
+                return;
+            }
             return $sce.trustAsHtml(
                 `<div data-tooltip="${type.label}" data-inverted>
                     <i class="grey ${type.icon} icon"></i>
