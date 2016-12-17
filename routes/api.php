@@ -1,18 +1,6 @@
 <?php
 
-use App\Expense;
-
-/*
-|--------------------------------------------------------------------------
-| API Routes
-|--------------------------------------------------------------------------
-|
-| Here is where you can register API routes for your application. These
-| routes are loaded by the RouteServiceProvider within a group which
-| is assigned the "api" middleware group. Enjoy building your API!
-|
-*/
-
-Route::get('/expense', function () {
-    return (new Expense())->getAll();
-})->middleware('api');
+Route::group(['middleware' => 'api'], function () {
+    // See https://laravel.com/docs/5.3/controllers#resource-controllers
+    Route::resource('expense', 'ExpenseController');
+});
