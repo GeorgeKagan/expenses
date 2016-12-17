@@ -26,9 +26,10 @@ class LoginController extends Controller
 
         // Init Google SDK
         $this->client = new \Google_Client();
-        $this->client->addScope(\Google_Service_Drive::DRIVE_READONLY);
+        $this->client->addScope(\Google_Service_Sheets::SPREADSHEETS_READONLY);
         $this->client->setAuthConfig($_SERVER['DOCUMENT_ROOT'] . self::CLIENT_SECRETS);
         $this->client->setRedirectUri('http://' . $_SERVER['HTTP_HOST'] . self::CALLBACK_ROUTE);
+        $this->client->setAccessType('offline');
     }
 
     /**
