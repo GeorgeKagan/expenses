@@ -7,3 +7,5 @@ Homestead.yaml
 .env
 public/css/
 public/js/
+semantic/
+semantic.json
