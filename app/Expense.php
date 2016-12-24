@@ -4,8 +4,111 @@ namespace App;
 
 class Expense
 {
+    private $client;
+
+    public function __construct()
+    {
+        $oauth = resolve('OAuth');
+        $this->client = $oauth->getClient();
+    }
+
     public function getAll()
     {
-        return [['year' => 2016, 'month' => 'december', 'recurrence' => 'monthly', 'date' => '05/12/2016', 'type' => 'car', 'typeLabel' => 'Car', 'amount' => 2040, 'description' => 'Cupra - loan']];
+        $service = new \Google_Service_Sheets($this->client);
+        $spreadsheetId = '1I181tHljfgM1OJy-JLl1Sb4uI-Qh8E-81Q9hK3heA2E';
+
+        // Get all sub-sheet names
+        $response = $service->spreadsheets->get($spreadsheetId);
+        $ranges = [];
+
+        foreach ($response->getSheets() as $range) {
+            if (!$range->getProperties()->hidden) {
+                $ranges[] = $range->getProperties()->getTitle();
+            }
+        }
+
+        // Get all data for the main sheet
+        $response = $service->spreadsheets_values->batchGet($spreadsheetId, ['ranges' => $ranges]);
+        $sheets = $response->getValueRanges();
+        $data = [];
+
+        foreach ($sheets as $sheet) {
+            $range = $sheet->getRange();
+            $matches = [];
+            preg_match('/\'(.+)\'/', $range, $matches);
+            list($month, $year) = explode(' ', $matches[1]);
+
+            if (strlen($year) === 2) {
+                $year = '20' . $year;
+            }
+            $rows = $sheet->getValues();
+
+            foreach ($rows as $row) {
+                if ($row[0] === 'Date') {
+                    continue;
+                }
+                $item = [
+                    'year' => $year,
+                    'month' => $month,
+                    'recurrence' => $this->getRecurrence($row),
+                    'date' => $row[0],
+                    'type' => trim($row[1]),
+                    'typeLabel' => trim($row[1]),
+                    'amount' => $this->removeCurrencyFromAmount($row, 2),
+                    'description' => $row[3] ?? ''
+                ];
+                $item = array_merge($item, $this->getPayments($row));
+                $data[] = $item;
+            }
+        }
+
+        return $data;
+    }
+
+    public function removeCurrencyFromAmount($row, $index)
+    {
+        if (!empty($row[$index])) {
+            $row[$index] = str_replace(',', '', $row[$index]);
+
+            if (!ctype_digit(mb_substr($row[$index], 0, 1))) {
+                $row[$index] = mb_substr($row[$index], 1);
+            }
+            $row[$index] = (int)$row[$index];
+
+            return $row[$index];
+        }
+
+        return 0;
+    }
+
+    public function getRecurrence($row)
+    {
+        $label = $row[5] ?? 'once';
+        $label = trim($label);
+
+        if ($label === '✔') {
+            $label = 'monthly';
+        }
+        else if (stristr($label, 'out of')) {
+            $label = 'payments';
+        }
+
+        return $label;
+    }
+
+    public function getPayments($row)
+    {
+        $total = $this->removeCurrencyFromAmount($row, 4);
+        $part = $this->removeCurrencyFromAmount($row, 2);
+
+        if ($total && $part) {
+            return [
+                'currPaymentNum' => '?',
+                'paymentsNum' => round($total / $part),
+                'totalAmount' => $total ?? 0
+            ];
+        }
+
+        return [];
     }
 }
