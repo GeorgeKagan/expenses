@@ -4,6 +4,7 @@ namespace App;
 
 /**
  * Singleton
+ * OAuth using Google+
  */
 class OAuth
 {

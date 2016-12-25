@@ -4,6 +4,9 @@ namespace App;
 
 class Expense
 {
+    /**
+     * @var \Google_Client
+     */
     private $client;
 
     public function __construct()
@@ -25,6 +28,9 @@ class Expense
         }
         $ranges = [];
 
+        /**
+         * @var $range \Google_Service_Sheets_Sheet
+         */
         foreach ($response->getSheets() as $range) {
             if (!$range->getProperties()->hidden) {
                 $ranges[] = $range->getProperties()->getTitle();
@@ -36,6 +42,9 @@ class Expense
         $sheets = $response->getValueRanges();
         $data = [];
 
+        /**
+         * @var $sheet \Google_Service_Sheets_ValueRange
+         */
         foreach ($sheets as $sheet) {
             $range = $sheet->getRange();
             $matches = [];
