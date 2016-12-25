@@ -18,7 +18,11 @@ class Expense
         $spreadsheetId = '1I181tHljfgM1OJy-JLl1Sb4uI-Qh8E-81Q9hK3heA2E';
 
         // Get all sub-sheet names
-        $response = $service->spreadsheets->get($spreadsheetId);
+        try {
+            $response = $service->spreadsheets->get($spreadsheetId);
+        } catch (\Exception $e) {
+            return response()->json(['error' => 'Token revoked'], $e->getCode());
+        }
         $ranges = [];
 
         foreach ($response->getSheets() as $range) {

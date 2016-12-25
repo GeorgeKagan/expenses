@@ -32,7 +32,6 @@ elixir(mix => {
         './node_modules/jquery/dist/jquery.js',
         './node_modules/angular/angular.js',
         './node_modules/restangular/dist/restangular.min.js',
-        './node_modules/angular-cookies/angular-cookies.js',
         './node_modules/angular-animate/angular-animate.min.js',
         './node_modules/angular-messages/angular-messages.min.js',
         './node_modules/angular-ui-router/release/angular-ui-router.min.js',
@@ -62,5 +61,5 @@ gulp.task('templateCache', () => {
             .pipe(gulp.dest('public/js'));
     };
     cacheTemplates();
-    gulp.watch(path, cacheTemplates)
+    gulp.watch(path, cacheTemplates);
 });

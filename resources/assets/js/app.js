@@ -20,7 +20,14 @@ expensesApp.config(($stateProvider, $urlRouterProvider, RestangularProvider, fcs
     // Restangular config
     RestangularProvider
         .setBaseUrl('/api')
-        .setDefaultHttpFields({cache: true});
+        .setDefaultHttpFields({cache: true})
+        .setErrorInterceptor(response => {
+            if (response.status === 401) {
+                window.alert('No access token / token revoked :(\n Please login again');
+                window.location.href = '/logout';
+            }
+            return false;
+        });
 
     // Number input config
     fcsaNumberConfigProvider.setDefaultOptions({
