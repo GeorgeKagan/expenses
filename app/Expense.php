@@ -2,6 +2,9 @@
 
 namespace App;
 
+use Carbon\Carbon;
+use Illuminate\Support\Facades\Cache;
+
 class Expense
 {
     /**
@@ -19,6 +22,7 @@ class Expense
     {
         $service = new \Google_Service_Sheets($this->client);
         $spreadsheetId = env('SPREADSHEET_ID');
+        $expiresAt = Carbon::now()->addMinutes(5);
 
         if (!$spreadsheetId) {
             return response()->json(['error' => 'Please specify SPREADSHEET_ID in .env'], 500);
@@ -26,7 +30,12 @@ class Expense
 
         // Get all sub-sheet names
         try {
-            $response = $service->spreadsheets->get($spreadsheetId);
+            $response = Cache::get('mainSpreadsheet');
+
+            if (!$response) {
+                $response = $service->spreadsheets->get($spreadsheetId);
+                Cache::put('mainSpreadsheet', $response, $expiresAt);
+            }
         } catch (\Exception $e) {
             return response()->json(['error' => 'Token revoked'], $e->getCode());
         }
@@ -42,7 +51,12 @@ class Expense
         }
 
         // Get all data for the main sheet
-        $response = $service->spreadsheets_values->batchGet($spreadsheetId, ['ranges' => $ranges]);
+        $response = Cache::get('subSpreadsheets');
+
+        if (!$response) {
+            $response = $service->spreadsheets_values->batchGet($spreadsheetId, ['ranges' => $ranges]);
+            Cache::put('subSpreadsheets', $response, $expiresAt);
+        }
         $sheets = $response->getValueRanges();
         $data = [];
 

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Auth;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Cache;
 use App\Http\Controllers\Controller;
 use App\OAuth;
 
@@ -75,6 +76,7 @@ class LoginController extends Controller
     public function logout(Request $request)
     {
         $request->session()->forget(OAuth::SESSION_KEY);
+        Cache::flush();
 
         return redirect('/');
     }
