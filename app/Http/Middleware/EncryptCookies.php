@@ -2,7 +2,7 @@
 
 namespace App\Http\Middleware;
 
-use App\Http\Controllers\Auth\LoginController;
+use App\OAuth;
 use Illuminate\Cookie\Middleware\EncryptCookies as BaseEncrypter;
 
 class EncryptCookies extends BaseEncrypter
@@ -13,6 +13,6 @@ class EncryptCookies extends BaseEncrypter
      * @var array
      */
     protected $except = [
-        LoginController::AUTH_FLAG_COOKIE
+
     ];
 }

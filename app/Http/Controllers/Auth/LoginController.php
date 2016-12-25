@@ -4,14 +4,10 @@ namespace App\Http\Controllers\Auth;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\OAuth;
 
 class LoginController extends Controller
 {
-    const SESSION_KEY = 'oauth';
-    const AUTH_FLAG_COOKIE = 'is_logged_in';
-    const CALLBACK_ROUTE = '/finishLogin';
-    const CLIENT_SECRETS = '/../client_secrets.json';
-
     /**
      * @var \Google_Client
      */
@@ -27,14 +23,21 @@ class LoginController extends Controller
         // Init Google SDK
         $this->client = new \Google_Client();
         $this->client->addScope(\Google_Service_Sheets::SPREADSHEETS_READONLY);
-        $this->client->setAuthConfig($_SERVER['DOCUMENT_ROOT'] . self::CLIENT_SECRETS);
-        $this->client->setRedirectUri('http://' . $_SERVER['HTTP_HOST'] . self::CALLBACK_ROUTE);
+        $this->client->setAuthConfig($_SERVER['DOCUMENT_ROOT'] . OAuth::CLIENT_SECRETS);
+        $this->client->setRedirectUri('http://' . $_SERVER['HTTP_HOST'] . OAuth::CALLBACK_ROUTE);
         $this->client->setAccessType('offline');
     }
 
     /**
+     * Show the login view.
+     */
+    public function showLogin()
+    {
+        return view('login');
+    }
+
+    /**
      * Redirect user to OAuth screen.
-     * @return \Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector
      */
     public function login()
     {
@@ -58,10 +61,10 @@ class LoginController extends Controller
         $access_token = $this->client->getAccessToken();
 
         if ($access_token) {
-            $request->session()->put(self::SESSION_KEY, json_encode($access_token));
+            $request->session()->put(OAuth::SESSION_KEY, json_encode($access_token));
         }
 
-        return $this->redirectWithCookie('/', true);
+        return redirect('/');
     }
 
     /**
@@ -71,21 +74,8 @@ class LoginController extends Controller
      */
     public function logout(Request $request)
     {
-        $request->session()->forget(self::SESSION_KEY);
+        $request->session()->forget(OAuth::SESSION_KEY);
 
-        return $this->redirectWithCookie('/', false);
-    }
-
-    /**
-     * cookie() params are as follows:
-     * 'name', 'value', $minutes, $path, $domain, $secure, $httpOnly
-     * @param string $path
-     * @param bool $val
-     * @return mixed
-     */
-    private function redirectWithCookie(string $path, bool $val)
-    {
-        return redirect($path)
-            ->cookie(self::AUTH_FLAG_COOKIE, $val, config('session.lifetime'), '/', env('APP_URL'), false, false);
+        return redirect('/');
     }
 }

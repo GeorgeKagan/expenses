@@ -2,41 +2,59 @@
 
 namespace App;
 
+/**
+ * Singleton
+ */
 class OAuth
 {
     const SESSION_KEY = 'oauth';
+    const CLIENT_SECRETS = '/../client_secrets.json';
+    const CALLBACK_ROUTE = '/finishLogin';
 
+    /**
+     * @var \Google_Client
+     */
     private $client;
 
     public function __construct()
     {
-        $this->refreshAccessToken();
+        $this->initClient();
+        $this->setAccessToken();
     }
 
+    /**
+     * Return the mighty Client
+     *
+     * @return \Google_Client
+     */
     public function getClient()
     {
         return $this->client;
     }
 
-    private function refreshAccessToken()
+    /**
+     * Init the Google Client
+     */
+    private function initClient()
     {
-        $client = new \Google_Client();
-        $client->setApplicationName('Expenses');
-        $client->setScopes(implode(' ', [
-                \Google_Service_Sheets::SPREADSHEETS_READONLY
+        $this->client = new \Google_Client();
+        $this->client->setApplicationName('Expenses');
+        $this->client->setAuthConfig('../client_secrets.json');
+        $this->client->setScopes(implode(' ', [
+            \Google_Service_Sheets::SPREADSHEETS_READONLY
         ]));
-        $client->setAuthConfig('../client_secrets.json');
-        //$client->setAccessType('offline');
+    }
+
+    /**
+     * Fetch access token from session and set it on the Client
+     */
+    private function setAccessToken()
+    {
         $access_token = json_decode(request()->session()->get('oauth'), true);
-        $client->setAccessToken($access_token);
 
-        // Fetch new access token regardless of whether it was expired
-        // Mainly for overcoming revoked tokens
-        $new_token = $client->fetchAccessTokenWithRefreshToken($client->getRefreshToken());
-        $new_token['refresh_token'] = $access_token['refresh_token'];
-//        request()->session()->put(self::SESSION_KEY, json_encode($new_token));
-
-        $client->setAccessToken($new_token);
-        $this->client = $client;
+        if (!$access_token) {
+            exit('No access token!');
+        }
+        $this->client->setAccessToken($access_token);
     }
 }

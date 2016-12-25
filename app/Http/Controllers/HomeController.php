@@ -9,6 +9,9 @@ class HomeController extends Controller
 
     }
 
+    /**
+     * Show the main SPA view
+     */
     public function index()
     {
         return view('main');
