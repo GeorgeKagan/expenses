@@ -18,7 +18,11 @@ class Expense
     public function getAll()
     {
         $service = new \Google_Service_Sheets($this->client);
-        $spreadsheetId = '1I181tHljfgM1OJy-JLl1Sb4uI-Qh8E-81Q9hK3heA2E';
+        $spreadsheetId = env('SPREADSHEET_ID');
+
+        if (!$spreadsheetId) {
+            return response()->json(['error' => 'Please specify SPREADSHEET_ID in .env'], 500);
+        }
 
         // Get all sub-sheet names
         try {

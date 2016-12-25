@@ -22,7 +22,11 @@ expensesApp.config(($stateProvider, $urlRouterProvider, RestangularProvider, fcs
         .setBaseUrl('/api')
         .setDefaultHttpFields({cache: true})
         .setErrorInterceptor(response => {
-            if (response.status === 401) {
+            if (response.status === 500) {
+                window.alert(response.data.error);
+                console.error(response.data.error);
+            }
+            else if (response.status === 401) {
                 window.alert('No access token / token revoked :(\n Please login again');
                 window.location.href = '/logout';
             }
