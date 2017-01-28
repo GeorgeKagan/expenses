@@ -1,1 +1,11 @@
-.idea/
+/node_modules
+/public/storage
+/vendor
+/.idea
+Homestead.json
+Homestead.yaml
+.env
+public/css/
+public/js/
+semantic/
+semantic.json

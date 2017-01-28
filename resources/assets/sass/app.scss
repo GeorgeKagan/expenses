@@ -1,0 +1,93 @@
+@import "variables";
+
+* {
+  font-family: Lato, 'Helvetica Neue', Arial, Helvetica, sans-serif;
+}
+
+// App header
+
+.masthead.segment {
+  padding: 1em 0 2.5em 0;
+  margin-bottom: 0;
+}
+
+.masthead .ui.huge {
+  margin-top: 0;
+  margin-bottom: 0;
+  line-height: 1.2em;
+}
+
+add-expense-modal {
+  display: block;
+  margin: 0 0 2em 0;
+}
+
+// App Main
+
+.ui.vertical.segment.exp-filters {
+  margin: 0 0 1.5em 0;
+  .row {
+    padding: 1.5em 0;
+  }
+}
+
+.exp-main {
+  min-height: 150px;
+}
+
+// Scrollbars
+
+::-webkit-scrollbar-track
+{
+  background-color: #F5F5F5;
+}
+
+::-webkit-scrollbar
+{
+  width: 11px;
+  background-color: #F5F5F5;
+}
+
+::-webkit-scrollbar-thumb
+{
+  width: 7px;
+  border: 2px solid transparent;
+  border-radius: 5px;
+  background-clip: padding-box;
+  background-color: #666;
+}
+
+// Various classes
+
+ng-messages {
+  color: $red;
+  display: block;
+  position: relative;
+  overflow: hidden;
+
+  ng-message {
+    display: block;
+    margin: 0.5em 0;
+  }
+}
+
+.massive-icon-centered {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  height: 136px;
+  width: 112px;
+  margin: -68px 0 0 -56px;
+}
+
+.exp-red {
+  color: $red;
+}
+
+.exp-click {
+  cursor: pointer;
+}
+
+.ui.header.exp-header {
+  margin-bottom: 25px;
+}

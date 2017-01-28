@@ -1,0 +1,56 @@
+<div class="ui inverted masthead center aligned segment">
+    <div class="ui container">
+        <div class="ui large secondary inverted pointing menu">
+            <div class="right item">
+                <a href="/logout" class="ui">Log out</a>
+            </div>
+        </div>
+    </div>
+    <div class="ui text container">
+        <add-expense-modal ng-if="!$root.isReadOnlyMode()"></add-expense-modal>
+        <estimations></estimations>
+    </div>
+</div>
+
+<div class="ui vertical segment exp-filters">
+    <div class="ui stackable centered grid container">
+        <div class="row">
+            <div class="three wide column">
+                <dropdown label="'Year'" values="home.years" model="home.filters.year"></dropdown>
+            </div>
+            <div class="three wide column">
+                <dropdown label="'Month'" values="home.months" model="home.filters.month"
+                          disabled="home.filters.year==='all'"></dropdown>
+            </div>
+            <div class="one wide column">
+                <button class="ui icon button blue" ng-click="home.filterData()"
+                        ng-disabled="!home.isJustLoaded && home.isFiltering">
+                    <i class="filter icon"></i>
+                </button>
+            </div>
+            <div class="ui one wide column middle aligned grid">
+                <a href="" ng-click="home.filterReset()" ng-if="!home.isThisMonth && !home.isFiltering">Reset</a>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="ui vertical segment">
+    <div class="ui stackable grid container">
+        <div class="row exp-main">
+            <div class="ten wide column" ng-class="{'nga-default nga-fade': home.isJustLoaded}" ng-show="$root.expenses.length">
+                <expense-table></expense-table>
+            </div>
+            <div class="six wide column" ng-class="{'nga-default nga-fade': home.isJustLoaded}" ng-show="$root.expenses.length">
+                <expense-chart></expense-chart>
+            </div>
+            <div class="ui sixteen wide column middle aligned grid"
+                 ng-show="!home.isJustLoaded && !$root.expenses.length">
+                <div class="ui disabled header centered">No Data</div>
+            </div>
+            <div class="ui dimmer inverted" ng-class="{'active': home.isFiltering}">
+                <div class="ui big loader"></div>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,68 @@
+<table class="ui striped celled blue padded table"
+       st-safe-src="$root.expenses" st-table="displayed" ng-class="{'compact': !$root.isReadOnlyMode()}">
+    <thead>
+        <tr class="center aligned">
+            <th></th>
+            <th st-sort="date" st-sort-default="true" st-skip-natural="true">Date</th>
+            <th st-sort="type" st-skip-natural="true">Type</th>
+            <th st-sort="amount" st-skip-natural="true">Amount</th>
+            <th>Description</th>
+            <th ng-if="!$root.isReadOnlyMode()"></th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr class="center aligned" ng-repeat="row in displayed">
+            <td class="left aligned collapsing">
+                <div ng-bind-html="row.recurrence | recurrence2icon"></div>
+            </td>
+            <td>
+                <small>{{row.recurrence==='monthly' ? 'N/A' : row.date | date}}</small>
+            </td>
+            <td ng-bind-html="row.type | type2icon"></td>
+
+            <td ng-if="row.recurrence!=='payments'">
+                <h4 class="ui header">
+                    <div class="content">
+                        {{row.amount | currency:currencySymbol}}
+                    </div>
+                </h4>
+            </td>
+
+            <td ng-if="row.recurrence==='payments'">
+                <h4 class="ui header">
+                    <div class="content">
+                        {{row.amount | currency:currencySymbol}}
+                        <sup class="ui mini circular gray label">{{row.currPaymentNum}}/{{row.paymentsNum}}</sup>
+                        <div class="sub header">{{row.totalAmount | currency:currencySymbol}} total</div>
+                    </div>
+                </h4>
+            </td>
+
+            <td>
+                <small>{{::row.description}}</small>
+            </td>
+            <td ng-if="!$root.isReadOnlyMode()">
+                <expense-actions></expense-actions>
+            </td>
+        </tr>
+    </tbody>
+    <tfoot>
+        <tr class="center aligned">
+            <th colspan="3"><em>Total</em></th>
+            <th><h3 ng-class="{'exp-red': amountSum > 0}">{{amountSum | currency:currencySymbol}}</h3></th>
+            <th colspan="2"></th>
+        </tr>
+        <tr class="center aligned" ng-if="isCurrentMonth()">
+            <th colspan="3">
+                <em>
+                    Estimated total &nbsp;
+                    <span data-tooltip="Total + (est. mo. food & fuel expenses) - (actual expenses)" data-inverted>
+                        <i class="help circle grey icon"></i>
+                    </span>
+                </em>
+            </th>
+            <th><h3>{{amountSum * 2 | currency:currencySymbol}}</h3></th>
+            <th colspan="2"></th>
+        </tr>
+    </tfoot>
+</table>

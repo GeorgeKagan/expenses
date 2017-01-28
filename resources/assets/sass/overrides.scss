@@ -1,0 +1,86 @@
+@import "variables";
+
+// Form
+
+.ui.form {
+  // Inputs style
+  input[type="text"],
+  input[type="number"],
+  .ui.dropdown
+  {
+    margin: 5px 0 0 0;
+    outline: none;
+    -webkit-appearance: none;
+    tap-highlight-color: rgba(255, 255, 255, 0);
+    line-height: 1.2142em;
+    padding: 1em 1.2em;
+    font-size: 1em;
+    background: #ffffff;
+    border: 2px solid rgba(34, 36, 38, 0.15);
+    color: rgba(0, 0, 0, 0.87);
+    border-radius: 0.28571429rem;
+    box-shadow: 0 0 0 0 transparent inset;
+    transition: color 0.1s ease, border-color 0.1s ease;
+  }
+
+  // Rich number input
+  input[fcsa-number] {
+    font-size: 1.1em;
+    font-weight: bold;
+    color: $red;
+  }
+
+  // Dropdown arrow icon
+  .ui.selection.dropdown > .dropdown.icon {
+    top: 1.2em;
+  }
+
+  // Input inline icon
+  .ui.icon.input > i.icon {
+    left: 3px;
+    top: 0.1em;
+  }
+}
+
+// Table
+
+table.ui.table {
+  th[st-sort] {
+    cursor: pointer;
+  }
+  .st-sort-ascent:after,
+  .st-sort-descent:after {
+    margin: 0 5px;
+    color: #666;
+    font-size: 11px;
+  }
+  .st-sort-ascent:after {
+    content: '\25B2';
+  }
+  .st-sort-descent:after {
+    content: '\25BC';
+  }
+}
+
+// Highcharts
+
+.highcharts-container {
+  background: none !important;
+}
+
+.highcharts-tooltip > span {
+  background-color: #eee;
+  z-index: 9999 !important;
+  padding: 7px 11px;
+  border-radius: 5px;
+  box-shadow: 1px 1px 4px rgba(0, 0, 0, 0.3);
+
+  b {
+    font-weight: bold;
+    font-size: 16px;
+  }
+}
+
+.highcharts-label {
+  cursor: default;
+}

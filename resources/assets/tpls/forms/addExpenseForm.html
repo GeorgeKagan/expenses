@@ -1,0 +1,65 @@
+<form name="expenseForm" novalidate>
+    <div class="ui form">
+
+        <div class="two fields">
+            <div class="field required">
+                <label>Amount</label>
+                <input type="text" name="amount" placeholder="Amount" maxlength="7" ng-model="form.amount" required fcsa-number>
+                <ng-messages for="expenseForm.amount.$error" role="alert">
+                    <ng-message when="fcsaNumber">Amount cannot be negative</ng-message>
+                </ng-messages>
+            </div>
+
+            <div class="field required nga-fast nga-rotate-down" ng-if="isPaymentsMode()">
+                <label>Number of payments</label>
+                <input type="text" name="paymentsNum" placeholder="Number of payments" pattern="[1-9][0-9]?" ng-model="form.paymentsNum" required>
+                <ng-messages for="expenseForm.paymentsNum.$error" role="alert">
+                    <ng-message when="pattern">Should be between 1 and 99</ng-message>
+                </ng-messages>
+            </div>
+        </div>
+
+        <div class="two fields">
+            <div class="field required">
+                <label>Type</label>
+                <dropdown label="'Type'" values="types" model="form.type"></dropdown>
+            </div>
+
+            <div class="field">
+                <label>Description</label>
+                <input type="text" name="desc" placeholder="Description" maxlength="20" ng-model="form.desc">
+            </div>
+        </div>
+
+        <h4 class="ui dividing header">Date & Recurrence</h4>
+
+        <div class="two fields">
+            <div class="field">
+                <label>Date</label>
+                <div class="ui left icon input">
+                    <input id="exp-date" type="text" name="date" placeholder="Date" ng-model="form.date" readonly required>
+                    <i class="calendar icon"></i>
+                </div>
+            </div>
+        </div>
+
+        <div class="grouped fields">
+            <label>Recurrence</label><br>
+            <div class="field" ng-repeat="recur in ::recurrenceTypes">
+                <div class="ui radio checkbox">
+                    <input id="exp-{{::recur.id}}" type="radio" name="recurrence" tabindex="0" class="hidden"
+                           value="{{::recur.id}}" ng-checked="$first" ng-model="form.recurrence">
+                    <label for="exp-{{::recur.id}}">{{::recur.label}}</label>
+                </div>
+            </div>
+        </div>
+
+        <div class="ui dimmer inverted" ng-class="{'active': isAdding!==null}">
+            <div class="ui text big loader" ng-if="isAdding===true">Crunching numbers...</div>
+            <div class="massive-icon-centered nga-default nga-fade" ng-if="isAdding===false">
+                <i class="massive checkmark icon"></i>
+            </div>
+        </div>
+
+    </div>
+</form>
