@@ -80,7 +80,7 @@ class Expense
                 }
                 $item = [
                     'year' => $year,
-                    'month' => $month,
+                    'month' => strtolower($month),
                     'recurrence' => $this->getRecurrence($row),
                     'date' => $row[0],
                     'type' => trim($row[1]),

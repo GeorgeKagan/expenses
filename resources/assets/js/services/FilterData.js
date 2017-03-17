@@ -37,6 +37,7 @@ angular.module('expensesApp').factory('FilterData', Utils => {
     service.getYears = () => {
         return [
             {id: 'all', label: 'All Years'},
+            {id: 2017, label: 2017},
             {id: 2016, label: 2016},
             {id: 2015, label: 2015},
             {id: 2014, label: 2014},

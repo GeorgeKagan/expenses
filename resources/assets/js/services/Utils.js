@@ -10,7 +10,7 @@ angular.module('expensesApp').factory('Utils', () => {
     service.getCurrentMonthYear = () => {
         return {
             year: moment().format('Y'),
-            month: moment().format('MMM')
+            month: moment().format('MMM').toLowerCase()
         };
     };
 

@@ -4,6 +4,7 @@ angular.module('expensesApp')
         "use strict";
         return item => {
             let type = Expense.getRecurrenceTypes().find(val => val.id === item);
+            type = type || 'Unknown';
             return $sce.trustAsHtml(
                 `<div data-tooltip="${type.label}" data-inverted>
                     <i class="${type.id==='monthly' ? 'green' : 'grey'} ${type.icon} icon"></i>
