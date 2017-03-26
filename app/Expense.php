@@ -75,17 +75,20 @@ class Expense
             $rows = $sheet->getValues();
 
             foreach ($rows as $row) {
-                if ($row[0] === 'Date') {
+                $amount = $this->removeCurrencyFromAmount($row, 2);
+
+                if (!$amount) {
                     continue;
                 }
+                $date = $this->convertDateToUSA($row[0]);
                 $item = [
                     'year' => $year,
                     'month' => strtolower($month),
                     'recurrence' => $this->getRecurrence($row),
-                    'date' => $row[0],
+                    'date' => $date,
                     'type' => trim($row[1]),
                     'typeLabel' => trim($row[1]),
-                    'amount' => $this->removeCurrencyFromAmount($row, 2),
+                    'amount' => $amount,
                     'description' => $row[3] ?? ''
                 ];
                 $item = array_merge($item, $this->getPayments($row));
@@ -94,6 +97,11 @@ class Expense
         }
 
         return $data;
+    }
+
+    public function convertDateToUSA(string $date)
+    {
+        return date('d/m/Y', strtotime(str_replace('/', '-', $date)));
     }
 
     public function removeCurrencyFromAmount($row, $index)

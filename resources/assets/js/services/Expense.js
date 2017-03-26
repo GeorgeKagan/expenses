@@ -11,8 +11,8 @@ angular.module('expensesApp').factory('Expense', (Restangular, Settings, FilterD
         {id: 'clothes', label: 'Clothes', icon: 'shopping bag'},
         {id: 'utilities', label: 'Utilities', icon: 'idea'},
         {id: 'apartment', label: 'Apartment', icon: 'building'},
-        {id: 'startup', label: 'StartUp', icon: 'startup'},
-        {id: 'vacation', label: 'Vacation', icon: 'vacation'},
+        {id: 'startup', label: 'StartUp', icon: 'cubes'},
+        {id: 'vacation', label: 'Vacation', icon: 'plane'},
         {id: 'misc', label: 'Misc.', icon: 'ellipsis horizontal'},
     ];
 
